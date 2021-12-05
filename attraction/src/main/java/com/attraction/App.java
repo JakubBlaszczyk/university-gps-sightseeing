@@ -1,13 +1,9 @@
 package com.attraction;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
-    }
+import org.springframework.boot.SpringApplication;
+
+public class App {
+  public static void main(String[] args) {
+    SpringApplication.run(App.class, args);
+  }
 }
