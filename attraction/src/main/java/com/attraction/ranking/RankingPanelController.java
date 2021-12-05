@@ -8,6 +8,12 @@ public class RankingPanelController {
 
   @RequestMapping("/ranking")
   public String loadPanel() {
+    loadUsersList();
     return "ranking";
+  }
+
+  private String loadUsersList(){
+    //TODO Loading users usernames with points
+    return "";
   }
 }

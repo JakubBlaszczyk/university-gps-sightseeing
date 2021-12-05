@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginPanelController {
 
   @RequestMapping("/login")
-  public String login() {
+  public String loadPanel() {
     return "login";
   }
 }

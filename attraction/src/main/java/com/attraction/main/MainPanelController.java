@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainPanelController {
 
   @RequestMapping("")
-  public String main() {
+  public String loadPanel() {
     return "main_panel";
   }
 }

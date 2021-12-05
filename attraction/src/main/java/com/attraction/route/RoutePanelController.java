@@ -8,6 +8,12 @@ public class RoutePanelController {
 
   @RequestMapping("/route")
   public String loadPanel() {
+    loadRoutesList();
     return "route_panel";
+  }
+
+  private String loadRoutesList(){
+    //TODO Implementation
+    return "";
   }
 }
