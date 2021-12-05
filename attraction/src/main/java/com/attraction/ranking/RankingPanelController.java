@@ -1,13 +1,13 @@
 package com.attraction.ranking;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class RankingPanelController {
 
   @RequestMapping("/ranking")
   public String loadPanel() {
-    return "This is Ranking Panel";
+    return "ranking";
   }
 }

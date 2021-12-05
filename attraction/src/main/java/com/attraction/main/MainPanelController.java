@@ -1,13 +1,13 @@
 package com.attraction.main;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class MainPanelController {
 
-  @RequestMapping("/")
-  public String loadPanel() {
-    return "This is Main Panel";
+  @RequestMapping("")
+  public String main() {
+    return "main_panel";
   }
 }
