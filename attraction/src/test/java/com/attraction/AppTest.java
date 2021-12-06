@@ -3,6 +3,8 @@ package com.attraction;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.attraction.history.History;
+import com.attraction.history.HistoryRepository;
 import com.attraction.monument.Monument;
 import com.attraction.monument.MonumentRepository;
 
@@ -11,9 +13,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import history.History;
-import history.HistoryRepository;
 
 /**
  * Unit test for simple App.

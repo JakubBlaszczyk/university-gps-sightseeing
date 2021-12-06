@@ -1,4 +1,4 @@
-package history;
+package com.attraction.history;
 
 import java.io.Serializable;
 import java.sql.Date;

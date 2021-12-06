@@ -1,4 +1,4 @@
-package history;
+package com.attraction.history;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
