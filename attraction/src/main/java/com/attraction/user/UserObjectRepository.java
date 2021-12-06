@@ -7,4 +7,8 @@ public interface UserObjectRepository extends MongoRepository<UserObject, String
 
   @Query("{username: '?0'}")
   UserObject findByUsername(String username);
+
+  Boolean existsByUsername(String username);
+
+  Boolean existsByEmail(String email);
 }
