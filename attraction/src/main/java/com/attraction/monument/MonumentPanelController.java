@@ -1,7 +1,6 @@
 package com.attraction.monument;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -13,7 +12,7 @@ public class MonumentPanelController {
     return "monument_panel";
   }
 
-  private String loadMonumentsList(){
+  private String loadMonumentsList() {
     //TODO Implemetation
     return "";
   }

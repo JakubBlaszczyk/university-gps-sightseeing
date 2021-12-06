@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import history.History;
+import history.HistoryRepository;
+
 /**
  * Unit test for simple App.
  */
@@ -27,7 +30,12 @@ public class AppTest {
                 "Warsaw");
         monumentRepo.save(object);
         System.out.println();
-        assertEquals(monumentRepo.findById(1).get().getName(), object.getName());
+        assertEquals(monumentRepo.findMonumentByName("name").getName(), object.getName());
+    }
+
+    @Test
+    public void checkHistoryCreation(@Autowired HistoryRepository historyRepo) {
+        // TODO: to check history correctly we need other instances
     }
 
     @Test
