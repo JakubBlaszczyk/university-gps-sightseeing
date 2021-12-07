@@ -1,45 +1,239 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html style="font-size: 16px;" lang="pl-PL">
 <head>
-    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Default</title>
-    <meta name="description" content=""/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-    <link rel="stylesheet" href="/css/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Ranking">
+    <meta name="description" content="">
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>main_panel</title>
+    <link rel="stylesheet" href="css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="css/main_panel.css" media="screen">
+    <script class="u-script" type="text/javascript" src="js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 4.1.0, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": "Site1"
+    }</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="main_panel">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
 </head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="/">Spring Boot</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item" th:if="${currentUser == null}"><a class="nav-link" th:href="@{/login}">Log in</a></li>
-            <li class="nav-item" th:if="${currentUser}">
-                <a class="nav-link" th:text="${fullName}"></a>
-                <form th:action="@{/logout}" method="post">
-                    <input type="submit" value="Sign Out"/>
-                </form>
-            </li>
-        </ul>
+<body class="u-body"><header class="u-clearfix u-custom-color-1 u-header u-header" id="sec-4148"><div class="u-clearfix u-sheet u-sheet-1">
+    <img class="u-image u-image-round u-preserve-proportions u-radius-10 u-image-1" src="images/android-chrome-192x192.png" alt="" data-image-width="192" data-image-height="192"><span class="u-icon u-icon-rectangle u-text-custom-color-3 u-icon-1" data-href="/user"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 55 55" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-73a4"></use></svg><svg class="u-svg-content" viewBox="0 0 55 55" x="0px" y="0px" id="svg-73a4" style="enable-background:new 0 0 55 55;"><path d="M55,27.5C55,12.337,42.663,0,27.5,0S0,12.337,0,27.5c0,8.009,3.444,15.228,8.926,20.258l-0.026,0.023l0.892,0.752
+	c0.058,0.049,0.121,0.089,0.179,0.137c0.474,0.393,0.965,0.766,1.465,1.127c0.162,0.117,0.324,0.234,0.489,0.348
+	c0.534,0.368,1.082,0.717,1.642,1.048c0.122,0.072,0.245,0.142,0.368,0.212c0.613,0.349,1.239,0.678,1.88,0.98
+	c0.047,0.022,0.095,0.042,0.142,0.064c2.089,0.971,4.319,1.684,6.651,2.105c0.061,0.011,0.122,0.022,0.184,0.033
+	c0.724,0.125,1.456,0.225,2.197,0.292c0.09,0.008,0.18,0.013,0.271,0.021C25.998,54.961,26.744,55,27.5,55
+	c0.749,0,1.488-0.039,2.222-0.098c0.093-0.008,0.186-0.013,0.279-0.021c0.735-0.067,1.461-0.164,2.178-0.287
+	c0.062-0.011,0.125-0.022,0.187-0.034c2.297-0.412,4.495-1.109,6.557-2.055c0.076-0.035,0.153-0.068,0.229-0.104
+	c0.617-0.29,1.22-0.603,1.811-0.936c0.147-0.083,0.293-0.167,0.439-0.253c0.538-0.317,1.067-0.648,1.581-1
+	c0.185-0.126,0.366-0.259,0.549-0.391c0.439-0.316,0.87-0.642,1.289-0.983c0.093-0.075,0.193-0.14,0.284-0.217l0.915-0.764
+	l-0.027-0.023C51.523,42.802,55,35.55,55,27.5z M2,27.5C2,13.439,13.439,2,27.5,2S53,13.439,53,27.5
+	c0,7.577-3.325,14.389-8.589,19.063c-0.294-0.203-0.59-0.385-0.893-0.537l-8.467-4.233c-0.76-0.38-1.232-1.144-1.232-1.993v-2.957
+	c0.196-0.242,0.403-0.516,0.617-0.817c1.096-1.548,1.975-3.27,2.616-5.123c1.267-0.602,2.085-1.864,2.085-3.289v-3.545
+	c0-0.867-0.318-1.708-0.887-2.369v-4.667c0.052-0.52,0.236-3.448-1.883-5.864C34.524,9.065,31.541,8,27.5,8
+	s-7.024,1.065-8.867,3.168c-2.119,2.416-1.935,5.346-1.883,5.864v4.667c-0.568,0.661-0.887,1.502-0.887,2.369v3.545
+	c0,1.101,0.494,2.128,1.34,2.821c0.81,3.173,2.477,5.575,3.093,6.389v2.894c0,0.816-0.445,1.566-1.162,1.958l-7.907,4.313
+	c-0.252,0.137-0.502,0.297-0.752,0.476C5.276,41.792,2,35.022,2,27.5z"></path></svg></span>
+    <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+        <div class="menu-collapse" style="font-weight: 700; font-size: 1.5rem;">
+            <a class="u-button-style u-custom-text-color u-custom-text-shadow u-nav-link" href="#" style="padding: 7px 0px; font-size: calc(1em + 14px);">
+                <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><symbol id="menu-hamburger" viewBox="0 0 16 16" style="width: 16px; height: 16px;"><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
+                </symbol>
+                </defs></svg>
+            </a>
+        </div>
+        <div class="u-custom-menu u-nav-container">
+            <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-custom-color-2" href="main_panel.html" style="padding: 10px 36px; text-shadow: 2px 2px 8px rgba(0,0,0,0.4);">Strona główna</a>
+            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-custom-color-2" href="monument_panel.html" style="padding: 10px 36px; text-shadow: 2px 2px 8px rgba(0,0,0,0.4);">Atrakcje</a>
+            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-custom-color-2" href="route_panel.html" style="padding: 10px 36px; text-shadow: 2px 2px 8px rgba(0,0,0,0.4);">Trasy</a>
+            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-custom-color-2" href="ranking.html" style="padding: 10px 36px; text-shadow: 2px 2px 8px rgba(0,0,0,0.4);">Ranking</a>
+            </li></ul>
+        </div>
+        <div class="u-custom-menu u-nav-container-collapse">
+            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+                <div class="u-inner-container-layout u-sidenav-overflow">
+                    <div class="u-menu-close"></div>
+                    <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="main_panel.html" style="padding: 10px 36px; text-shadow: 2px 2px 8px rgba(0,0,0,0.4);">Strona główna</a>
+                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="monument_panel.html" style="padding: 10px 36px; text-shadow: 2px 2px 8px rgba(0,0,0,0.4);">Atrakcje</a>
+                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="route_panel.html" style="padding: 10px 36px; text-shadow: 2px 2px 8px rgba(0,0,0,0.4);">Trasy</a>
+                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="ranking.html" style="padding: 10px 36px; text-shadow: 2px 2px 8px rgba(0,0,0,0.4);">Ranking</a>
+                    </li></ul>
+                </div>
+            </div>
+            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+        </div>
+    </nav>
+</div></header>
+<section class="u-clearfix u-section-1" id="sec-5d3a">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+            <div class="u-layout">
+                <div class="u-layout-row">
+                    <div class="u-container-style u-layout-cell u-size-20 u-layout-cell-1">
+                        <div class="u-container-layout u-container-layout-1">
+                            <div class="u-carousel u-expanded-width u-gallery u-gallery-slider u-layout-carousel u-lightbox u-no-transition u-show-text-on-hover u-gallery-1" data-interval="5000" data-u-ride="carousel" id="carousel-bf4d">
+                                <ol class="u-absolute-hcenter u-carousel-indicators u-carousel-indicators-1">
+                                    <li data-u-target="#carousel-bf4d" data-u-slide-to="0" class="u-active u-grey-70 u-shape-circle" style="width: 10px; height: 10px;"></li>
+                                    <li data-u-target="#carousel-bf4d" data-u-slide-to="1" class="u-grey-70 u-shape-circle" style="width: 10px; height: 10px;"></li>
+                                    <li data-u-target="#carousel-bf4d" data-u-slide-to="2" class="u-grey-70 u-shape-circle" style="width: 10px; height: 10px;"></li>
+                                </ol>
+                                <div class="u-carousel-inner u-gallery-inner" role="listbox">
+                                    <div class="u-active u-carousel-item u-effect-fade u-gallery-item u-carousel-item-1">
+                                        <div class="u-back-slide" data-image-width="1280" data-image-height="853">
+                                            <img class="u-back-image u-expanded" src="images/201da424c980d9273d68b89a23d6c939f1a546e75763be52cdc7e7ef9b7a088a56599efb4d5ac54e7c662d57a7c314ebbc63253e4b7aee87db05c2_1280.jpg">
+                                        </div>
+                                        <div class="u-align-center u-over-slide u-shading u-valign-bottom u-over-slide-1">
+                                            <h3 class="u-gallery-heading">Muzeum Narodowe</h3>
+                                            <p class="u-gallery-text">Kraków</p>
+                                        </div>
+                                    </div>
+                                    <div class="u-carousel-item u-effect-fade u-gallery-item u-carousel-item-2">
+                                        <div class="u-back-slide" data-image-width="1280" data-image-height="848">
+                                            <img class="u-back-image u-expanded" src="images/581a501a487a0c41228c5ecd0310bd235f2c895824deb993deee4af5b8cac72ae1001480f25834190a2af40e221528439f6ebac13fa4e85d1e1362_1280.jpg">
+                                        </div>
+                                        <div class="u-align-center u-over-slide u-shading u-valign-bottom u-over-slide-2">
+                                            <h3 class="u-gallery-heading">Katedra Św. Mikołaja</h3>
+                                            <p class="u-gallery-text">Zakopane</p>
+                                        </div>
+                                    </div>
+                                    <div class="u-carousel-item u-effect-fade u-gallery-item u-carousel-item-3" data-image-width="891" data-image-height="1280">
+                                        <div class="u-back-slide">
+                                            <img class="u-back-image u-expanded" src="images/83ae3c0c379c22bd391a7a36dbbabde61c8f32f249376b8d058a863b21dfd875ea1cfbf1ed666279360c1a125158a1537804ec98eb6ac47b613c36_1280.jpg" alt="Pomnik Św. Michała Archanioła">
+                                        </div>
+                                        <div class="u-align-center u-over-slide u-shading u-valign-bottom u-over-slide-3">
+                                            <h3 class="u-gallery-heading">Pomnik Św. Michała Archanioła</h3>
+                                            <p class="u-gallery-text">Kraków</p>
+                                        </div>
+                                        <style data-mode="XL" data-visited="true"></style>
+                                        <style data-mode="LG"></style>
+                                        <style data-mode="MD"></style>
+                                        <style data-mode="SM"></style>
+                                        <style data-mode="XS"></style>
+                                    </div>
+                                </div>
+                                <a class="u-absolute-vcenter u-carousel-control u-carousel-control-prev u-grey-70 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-white u-carousel-control-1" href="#carousel-bf4d" role="button" data-u-slide="prev">
+                      <span aria-hidden="true">
+                        <svg viewBox="0 0 451.847 451.847"><path d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
+c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
+c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
+                      </span>
+                                    <span class="sr-only">
+                        <svg viewBox="0 0 451.847 451.847"><path d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
+c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
+c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
+                      </span>
+                                </a>
+                                <a class="u-absolute-vcenter u-carousel-control u-carousel-control-next u-grey-70 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-white u-carousel-control-2" href="#carousel-bf4d" role="button" data-u-slide="next">
+                      <span aria-hidden="true">
+                        <svg viewBox="0 0 451.846 451.847"><path d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
+L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
+c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
+                      </span>
+                                    <span class="sr-only">
+                        <svg viewBox="0 0 451.846 451.847"><path d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
+L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
+c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
+                      </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="u-container-style u-layout-cell u-size-20 u-layout-cell-2">
+                        <div class="u-container-layout u-container-layout-2">
+                            <div class="u-carousel u-expanded-width u-gallery u-gallery-slider u-layout-carousel u-lightbox u-no-transition u-show-text-on-hover u-gallery-2" data-interval="5000" data-u-ride="carousel" id="carousel-d3e5">
+                                <ol class="u-absolute-hcenter u-carousel-indicators u-carousel-indicators-2">
+                                    <li data-u-target="#carousel-d3e5" data-u-slide-to="0" class="u-active u-grey-70 u-shape-circle" style="width: 10px; height: 10px;"></li>
+                                    <li data-u-target="#carousel-d3e5" data-u-slide-to="1" class="u-grey-70 u-shape-circle" style="width: 10px; height: 10px;"></li>
+                                    <li data-u-target="#carousel-d3e5" data-u-slide-to="2" class="u-grey-70 u-shape-circle" style="width: 10px; height: 10px;"></li>
+                                </ol>
+                                <div class="u-carousel-inner u-gallery-inner" role="listbox">
+                                    <div class="u-active u-carousel-item u-effect-fade u-gallery-item u-carousel-item-4">
+                                        <div class="u-back-slide" data-image-width="1280" data-image-height="851">
+                                            <img class="u-back-image u-expanded" src="images/119d0492f4c9c13b7f4ae99e2e72c303dda0449cb28a32af44946d5aa353cacc9ac6017a86af409c37d6df6365fbbb131e824c6cd76b4a75e9caef_1280.jpg">
+                                        </div>
+                                        <div class="u-align-center u-over-slide u-shading u-valign-bottom u-over-slide-4">
+                                            <h3 class="u-gallery-heading">Brukowane uliczki Krakowa</h3>
+                                            <p class="u-gallery-text">Kraków<br>4 godziny
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="u-carousel-item u-effect-fade u-gallery-item u-carousel-item-5">
+                                        <div class="u-back-slide" data-image-width="961" data-image-height="1280">
+                                            <img class="u-back-image u-expanded" src="images/bb5d0db6548231260dd28100dca3c297cf5ecda83db21c4f70f331dd1a2554d6fae457d40f99b1c1f255544dc61ac5a501b0a8ae88e7561bf95bd2_1280.jpg">
+                                        </div>
+                                        <div class="u-align-center u-over-slide u-shading u-valign-bottom u-over-slide-5">
+                                            <h3 class="u-gallery-heading">Nie tylko góry...</h3>
+                                            <p class="u-gallery-text">Zakopane<br>5 godzin
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="u-carousel-item u-effect-fade u-gallery-item u-carousel-item-6" data-image-width="853" data-image-height="1280">
+                                        <div class="u-back-slide">
+                                            <img class="u-back-image u-expanded" src="images/111a84a90f8f7b2a827c0fe3325dc4d3d7e586126588da66659a60c82bc218a9c003b3363ce025d6c1ddcefd032a56e88b9023023b9ddb63167bf6_1280.jpg" alt="Szlakiem górników">
+                                        </div>
+                                        <div class="u-align-center u-over-slide u-shading u-valign-bottom u-over-slide-6">
+                                            <h3 class="u-gallery-heading">Szlakiem górników</h3>
+                                            <p class="u-gallery-text">Katowice<br>3 godziny</p>
+                                        </div>
+                                        <style data-mode="XL"></style>
+                                        <style data-mode="LG"></style>
+                                        <style data-mode="MD"></style>
+                                        <style data-mode="SM"></style>
+                                        <style data-mode="XS"></style>
+                                    </div>
+                                </div>
+                                <a class="u-absolute-vcenter u-carousel-control u-carousel-control-prev u-grey-70 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-white u-carousel-control-3" href="#carousel-d3e5" role="button" data-u-slide="prev">
+                      <span aria-hidden="true">
+                        <svg viewBox="0 0 451.847 451.847"><path d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
+c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
+c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
+                      </span>
+                                    <span class="sr-only">
+                        <svg viewBox="0 0 451.847 451.847"><path d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
+c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
+c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
+                      </span>
+                                </a>
+                                <a class="u-absolute-vcenter u-carousel-control u-carousel-control-next u-grey-70 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-white u-carousel-control-4" href="#carousel-d3e5" role="button" data-u-slide="next">
+                      <span aria-hidden="true">
+                        <svg viewBox="0 0 451.846 451.847"><path d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
+L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
+c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
+                      </span>
+                                    <span class="sr-only">
+                        <svg viewBox="0 0 451.846 451.847"><path d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
+L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
+c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
+                      </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="u-align-center u-container-style u-layout-cell u-size-20 u-layout-cell-3">
+                        <div class="u-container-layout u-container-layout-3">
+                            <h2 class="u-text u-text-1">Ranking</h2>
+                            <p class="u-align-center u-text u-text-2">Przewodnik Michael88 - 565 pkt.<br>Przewodnik Arkadiush2137 - 420 pkt.&nbsp;<br>Użytkownik KasiaXOXO - 335 pkt.<br>Użytkownik FranekFerrari - 330 pkt.<br>Użytkownik MarlenaLOL - 205 pkt.<br>Użytkownik Edek_lux200 - 190 pkt.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</nav>
+</section>
 
-<div class="container">
-    <div layout:fragment="content"></div>
-</div>
-<!-- /.container -->
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<footer class="u-align-center u-clearfix u-custom-color-1 u-footer u-footer" id="sec-4a7c"><div class="u-clearfix u-sheet u-valign-middle-xs u-sheet-1">
+    <p class="u-small-text u-text u-text-variant u-text-1">Przykładowy tekst. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
+</div></footer>
 </body>
 </html>
