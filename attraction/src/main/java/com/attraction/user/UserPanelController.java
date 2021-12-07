@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserPanelController {
 
   @Autowired
-  private UserObjectRepository userRepo;
+  UserObjectService userService;
 
   @GetMapping("/user/{username}")
   @PreAuthorize("hasRole('USER') or hasRole('GUIDE') or hasRole('ADMIN')")
   public UserObject loadPanel(@PathVariable String username) {
-    return userRepo.findByUsername(username);
+    return userService.findByUsername(username);
   }
 }

@@ -1,7 +1,8 @@
 package com.attraction.security;
 
 import com.attraction.user.UserObject;
-import com.attraction.user.UserObjectRepository;
+import com.attraction.user.UserObjectService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,13 +15,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class CustomUserDetailsService implements UserDetailsService {
 
   @Autowired
-  UserObjectRepository userObjectRepository;
+  UserObjectService userService;
 
   @Override
   @Transactional
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     try {
-      UserObject userObject = userObjectRepository.findByUsername(username);
+      UserObject userObject = userService.findByUsername(username);
       return CustomUserDetails.build(userObject);
     } catch (Exception exception) {
       throw new UsernameNotFoundException("User not found");
