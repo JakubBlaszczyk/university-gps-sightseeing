@@ -96,7 +96,7 @@ public class SignUpPanelController {
     }
 
     // Create new user's account
-    log.info(Integer.valueOf(userRepoService.findMaxId() + 1).toString());
+    log.info(Integer.toString(userRepoService.findMaxId() + 1));
     userRepoService.save(new UserObject(userRepoService.findMaxId() + 1, signupRequest.getUsername(),
         encoder.encode(signupRequest.getPassword()), signupRequest.getEmail(), "", Integer.valueOf(0), "",
         roles));

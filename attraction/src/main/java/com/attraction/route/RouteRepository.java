@@ -1,6 +1,8 @@
 package com.attraction.route;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
-public interface RouteRepository extends MongoRepository<Route, Integer> {
+@Repository
+interface RouteRepository extends MongoRepository<Route, Integer> {
 }

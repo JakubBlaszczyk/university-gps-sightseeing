@@ -11,12 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class RoutePanelController {
 
   @Autowired
-  RouteRepository routeRepo;
-
+  private RouteService routeService;
   @GetMapping("/route")
   @PreAuthorize("hasRole('USER') or hasRole('GUIDE') or hasRole('ADMIN')")
   public List<Route> loadPanel() {
-    return routeRepo.findAll();
+    return routeService.getAllRoutes();
   }
 
 }
