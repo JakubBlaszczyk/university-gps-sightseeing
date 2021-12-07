@@ -41,16 +41,15 @@ public class SignUpPanelController {
   public ResponseEntity<?> createNewUser(@Valid @RequestBody SignupRequest signupRequest) {
     if (Boolean.TRUE.equals(userRepository.existsByUsername(signupRequest.getUsername()))) {
       return ResponseEntity
-              .badRequest()
-              .body(new MessageResponse("Error: Username is already taken!"));
+          .badRequest()
+          .body(new MessageResponse("Error: Username is already taken!"));
     }
 
     if (userRepository.existsByEmail(signupRequest.getEmail())) {
       return ResponseEntity
-              .badRequest()
-              .body(new MessageResponse("Error: Email is already in use!"));
+          .badRequest()
+          .body(new MessageResponse("Error: Email is already in use!"));
     }
-
 
     Set<String> strRoles = signupRequest.getRoles();
     Set<Role> roles = new HashSet<>();
@@ -93,9 +92,9 @@ public class SignUpPanelController {
     }
 
     // Create new user's account
-    UserObject userObject = new UserObject(signupRequest.getUsername(),
-            signupRequest.getEmail(),
-            encoder.encode(signupRequest.getPassword()), roles);
+    UserObject userObject = new UserObject(Integer.valueOf(0), signupRequest.getUsername(),
+        encoder.encode(signupRequest.getPassword()), signupRequest.getEmail(), "", Integer.valueOf(0), "",
+        roles);
     userRepository.save(userObject);
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));

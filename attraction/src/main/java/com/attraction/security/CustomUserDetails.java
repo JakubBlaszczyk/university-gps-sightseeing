@@ -37,7 +37,7 @@ public class CustomUserDetails implements UserDetails {
             .collect(Collectors.toList());
 
     return new CustomUserDetails(
-            userObject.getId(),
+            userObject.getId().toString(),
             userObject.getUsername(),
             userObject.getEmail(),
             userObject.getPassword(),
