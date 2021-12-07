@@ -1,5 +1,8 @@
 package com.attraction.route;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,15 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class RoutePanelController {
 
+  @Autowired
+  RouteRepository routeRepo;
+
   @GetMapping("/route")
   @PreAuthorize("hasRole('USER') or hasRole('GUIDE') or hasRole('ADMIN')")
-  public String loadPanel() {
-    loadRoutesList();
-    return "route_panel";
+  public List<Route> loadPanel() {
+    return routeRepo.findAll();
   }
 
-  private String loadRoutesList(){
-    //TODO Implementation
-    return "";
-  }
 }
