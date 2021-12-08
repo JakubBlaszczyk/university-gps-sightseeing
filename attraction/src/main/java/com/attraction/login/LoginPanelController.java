@@ -36,7 +36,7 @@ public class LoginPanelController {
   }
 
   @PostMapping("/login")
-  public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest){
+  public ResponseEntity<?> login(@Valid LoginRequest loginRequest){
 
     Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),loginRequest.getPassword())

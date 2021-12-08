@@ -42,7 +42,7 @@ public class SignUpPanelController {
   }
 
   @PostMapping("/signup")
-  public ResponseEntity<?> createNewUser(@Valid @RequestBody SignupRequest signupRequest) {
+  public ResponseEntity<?> createNewUser(@Valid SignupRequest signupRequest) {
     if (Boolean.TRUE.equals(userRepoService.existsByUsername(signupRequest.getUsername()))) {
       return ResponseEntity
           .badRequest()
