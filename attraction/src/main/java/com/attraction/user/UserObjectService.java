@@ -12,7 +12,6 @@ public class UserObjectService {
   UserObjectRepository userRepo;
 
   public Integer findMaxId() {
-
     List<UserObject> list = this.userRepo.findAll();
     return list.get(list.size() - 1).getId();
   }
@@ -27,6 +26,10 @@ public class UserObjectService {
 
   public UserObject findByUsername(String name) {
     return userRepo.findByUsername(name);
+  }
+
+  public List<UserObject> getAllUsers() {
+    return userRepo.findAll();
   }
 
   public void save(UserObject object) {

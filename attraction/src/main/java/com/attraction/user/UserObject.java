@@ -10,7 +10,7 @@ import java.util.Set;
 
 @Document("users")
 @Value
-public class UserObject {
+public class UserObject implements Comparable {
 
   @Id
   Integer id;
@@ -22,4 +22,10 @@ public class UserObject {
   Integer points;
   String preference;
   Set<Role> roles;
+
+  @Override
+  public int compareTo(Object o) {
+    UserObject temp = (UserObject)o;
+    return this.points - temp.getPoints();
+  }
 }

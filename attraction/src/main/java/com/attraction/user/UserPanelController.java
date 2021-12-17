@@ -1,5 +1,7 @@
 package com.attraction.user;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,6 +21,11 @@ public class UserPanelController {
   @PreAuthorize("hasRole('USER') or hasRole('GUIDE') or hasRole('ADMIN')")
   public UserObject loadPanel(@PathVariable String username) {
     return userService.findByUsername(username);
+  }
+
+  @GetMapping("/user")
+  public List<UserObject> getUsers() {
+    return userService.getAllUsers();
   }
 
   @PostMapping("/user/{username}/change/password/{password}")
