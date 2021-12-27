@@ -16,6 +16,6 @@ public class RankingService {
 
   List<RankingEntity> loadSortedList() {
     return userService.getAllUsers().stream().sorted()
-        .map(x -> new RankingEntity(x.getUsername(), x.getPoints(), x.getAvatar(), x.getRoles())).collect(Collectors.toList());
+        .map(x -> new RankingEntity(x.getUsername(), x.getPoints(), x.getAvatar(), x.getRole())).collect(Collectors.toList());
   }
 }

@@ -1,8 +1,10 @@
 package com.attraction.user;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,20 +14,23 @@ public class UserObjectService {
   UserObjectRepository userRepo;
 
   public Integer findMaxId() {
-    List<UserObject> list = this.userRepo.findAll();
-    return list.get(list.size() - 1).getId();
+    return this.userRepo.findAll().size();
   }
 
   public Boolean existsByEmail(String email) {
-    return userRepo.existsByEmail(email);
+    return userRepo.exists(Example.of(new UserObject(null, null, null, email, null, null, null, null)));
   }
 
-  public Boolean existsByUsername(String name) {
-    return userRepo.existsByUsername(name);
+  public Boolean existsByUsername(String username) {
+    return userRepo.exists(Example.of(new UserObject(null, username, null, null, null, null, null, null)));
   }
 
-  public UserObject findByUsername(String name) {
-    return userRepo.findByUsername(name);
+  public UserObject findByUsername(String username) {
+    Optional<UserObject> result = userRepo.findOne(Example.of(new UserObject(null, username, null, null, null, null, null, null)));
+    if (!result.isPresent()) {
+      throw new RuntimeException();
+    }
+    return  result.get();
   }
 
   public List<UserObject> getAllUsers() {

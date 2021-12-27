@@ -13,12 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
-
-import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javax.validation.Valid;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @Controller
@@ -36,25 +35,23 @@ public class LoginPanelController {
   }
 
   @PostMapping("/login")
-  public ResponseEntity<?> login(@Valid LoginRequest loginRequest){
+  public ResponseEntity<JwtResponse> login(@Valid LoginRequest loginRequest) {
 
     Authentication authentication = authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),loginRequest.getPassword())
-    );
+        new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
     SecurityContextHolder.getContext().setAuthentication(authentication);
     String jwt = jwtUtils.generateJwtToken(authentication);
 
     CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
     List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
-            .collect(Collectors.toList());
+        .collect(Collectors.toList());
 
     return ResponseEntity.ok(new JwtResponse(
-            jwt,
-            userDetails.getId(),
-            userDetails.getUsername(),
-            userDetails.getEmail(),
-            roles
-    ));
+        jwt,
+        userDetails.getId(),
+        userDetails.getUsername(),
+        userDetails.getEmail(),
+        roles));
   }
 }

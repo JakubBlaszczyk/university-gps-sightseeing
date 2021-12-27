@@ -6,25 +6,25 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.Value;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
+@Value
 public class CustomUserDetails implements UserDetails {
 
-  private static final long serialVersionUID = 1L;
-
-  private String id;
-  private String username;
-  private String email;
+  String id;
+  String username;
+  String email;
 
   @JsonIgnore
-  private String password;
+  String password;
 
-  private Collection<? extends GrantedAuthority> authorities;
+  GrantedAuthority authorities;
 
-  public CustomUserDetails(String id, String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+  public CustomUserDetails(String id, String username, String email, String password, GrantedAuthority authorities) {
     this.id = id;
     this.username = username;
     this.email = email;
@@ -33,8 +33,7 @@ public class CustomUserDetails implements UserDetails {
   }
 
   public static CustomUserDetails build(UserObject userObject) {
-    List<GrantedAuthority> authorities = userObject.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName().name()))
-            .collect(Collectors.toList());
+    GrantedAuthority authorities = new SimpleGrantedAuthority(userObject.getRole().toString());
 
     return new CustomUserDetails(
             userObject.getId().toString(),
@@ -47,25 +46,7 @@ public class CustomUserDetails implements UserDetails {
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    return authorities;
-  }
-
-  @Override
-  public String getPassword() {
-    return password;
-  }
-
-  @Override
-  public String getUsername() {
-    return username;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public String getId() {
-    return id;
+    return List.of(this.authorities);
   }
 
   @Override

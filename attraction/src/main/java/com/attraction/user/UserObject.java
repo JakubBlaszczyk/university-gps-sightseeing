@@ -6,11 +6,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Value;
 
-import java.util.Set;
-
 @Document("users")
 @Value
-public class UserObject implements Comparable {
+public class UserObject implements Comparable<UserObject> {
 
   @Id
   Integer id;
@@ -21,11 +19,10 @@ public class UserObject implements Comparable {
   String avatar;
   Integer points;
   String preference;
-  Set<Role> roles;
+  Role role;
 
   @Override
-  public int compareTo(Object o) {
-    UserObject temp = (UserObject)o;
+  public int compareTo(UserObject temp) {
     return this.points - temp.getPoints();
   }
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MonumentPanelController {
 
   @GetMapping("/monument")
-  @PreAuthorize("hasRole('USER') or hasRole('GUIDE') or hasRole('ADMIN')")
+  @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
   public String loadPanel() {
     loadMonumentsList();
     return "monument_panel";

@@ -18,7 +18,7 @@ public class UserPanelController {
   UserObjectService userService;
 
   @GetMapping("/user/{username}")
-  @PreAuthorize("hasRole('USER') or hasRole('GUIDE') or hasRole('ADMIN')")
+  @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
   public UserObject loadPanel(@PathVariable String username) {
     return userService.findByUsername(username);
   }
@@ -29,10 +29,10 @@ public class UserPanelController {
   }
 
   @PostMapping("/user/{username}/change/password/{password}")
-  @PreAuthorize("hasRole('USER') or hasRole('GUIDE') or hasRole('ADMIN')")
+  @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
   public void changePassword(@PathVariable String username, @PathVariable String password) {
     UserObject userObject = userService.findByUsername(username);
     userService.save(new UserObject(userObject.getId(), userObject.getUsername(), password, userObject.getEmail(),
-        userObject.getAvatar(), userObject.getPoints(),userObject.getPreference(), userObject.getRoles()));
+        userObject.getAvatar(), userObject.getPoints(),userObject.getPreference(), userObject.getRole()));
   }
 }

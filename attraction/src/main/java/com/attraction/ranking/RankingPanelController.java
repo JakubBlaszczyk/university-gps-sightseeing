@@ -14,7 +14,7 @@ public class RankingPanelController {
   RankingService rankingService;
 
   @GetMapping("/ranking")
-  @PreAuthorize("hasRole('USER') or hasRole('GUIDE') or hasRole('ADMIN')")
+  @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
   public List<RankingEntity> loadUsersList() {
     return rankingService.loadSortedList();
   }
