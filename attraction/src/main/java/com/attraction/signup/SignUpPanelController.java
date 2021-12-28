@@ -36,7 +36,7 @@ public class SignUpPanelController {
   }
 
   @PostMapping("/signup")
-  public ResponseEntity<MessageResponse> createNewUser(@Valid @RequestBody SignupRequest signupRequest,
+  public ResponseEntity<MessageResponse> createNewUser(@Valid SignupRequest signupRequest,
       BindingResult bindingResult) {
     validateInput(bindingResult);
     if (Boolean.TRUE.equals(userRepoService.existsByUsername(signupRequest.getUsername()))) {
