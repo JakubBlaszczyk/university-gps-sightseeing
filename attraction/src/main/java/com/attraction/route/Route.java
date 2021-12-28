@@ -1,5 +1,6 @@
 package com.attraction.route;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Value;
@@ -8,7 +9,9 @@ import lombok.Value;
 @Value
 public class Route {
 
+  @Id
   Integer id;
+
   String name;
   Integer length;
   String description;
