@@ -1,6 +1,5 @@
 package com.attraction.history;
 
-import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 
@@ -20,7 +19,7 @@ public class History {
 }
 
 @Value
-class Key implements Serializable {
+class Key {
   Date date;
   Time time;
 
