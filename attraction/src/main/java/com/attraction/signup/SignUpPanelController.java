@@ -2,8 +2,8 @@ package com.attraction.signup;
 
 import com.attraction.role.Role;
 import com.attraction.security.MessageResponse;
-import com.attraction.user.UserObject;
-import com.attraction.user.UserObjectService;
+import com.attraction.user.User;
+import com.attraction.user.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +25,7 @@ import javax.validation.Valid;
 public class SignUpPanelController {
 
   @Autowired
-  UserObjectService userRepoService;
+  UserService userRepoService;
 
   @Autowired
   PasswordEncoder encoder;
@@ -72,7 +72,7 @@ public class SignUpPanelController {
       }
     }
 
-    userRepoService.save(new UserObject(userRepoService.findMaxId() + 1, signupRequest.getUsername(),
+    userRepoService.save(new User(userRepoService.findMaxId() + 1, signupRequest.getUsername(),
         encoder.encode(signupRequest.getPassword()), signupRequest.getEmail(), "", Integer.valueOf(0), "",
         role));
 

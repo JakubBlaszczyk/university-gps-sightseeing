@@ -9,36 +9,36 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserObjectService {
+public class UserService {
 
   @Autowired
-  UserObjectRepository userRepo;
+  UserRepository userRepo;
 
   public Integer findMaxId() {
     return this.userRepo.findAll().size();
   }
 
   public Boolean existsByEmail(String email) {
-    return userRepo.exists(Example.of(new UserObject(null, null, null, email, null, null, null, null)));
+    return userRepo.exists(Example.of(new User(null, null, null, email, null, null, null, null)));
   }
 
   public Boolean existsByUsername(String username) {
-    return userRepo.exists(Example.of(new UserObject(null, username, null, null, null, null, null, null)));
+    return userRepo.exists(Example.of(new User(null, username, null, null, null, null, null, null)));
   }
 
-  public UserObject findByUsername(String username) {
-    Optional<UserObject> result = userRepo.findOne(Example.of(new UserObject(null, username, null, null, null, null, null, null)));
+  public User findByUsername(String username) {
+    Optional<User> result = userRepo.findOne(Example.of(new User(null, username, null, null, null, null, null, null)));
     if (!result.isPresent()) {
       throw new UsernameNotFoundException("No such username");
     }
     return  result.get();
   }
 
-  public List<UserObject> getAllUsers() {
+  public List<User> getAllUsers() {
     return userRepo.findAll();
   }
 
-  public void save(UserObject object) {
+  public void save(User object) {
     userRepo.save(object);
   }
 }

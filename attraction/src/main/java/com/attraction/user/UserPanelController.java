@@ -15,24 +15,24 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserPanelController {
 
   @Autowired
-  UserObjectService userService;
+  UserService userService;
 
   @GetMapping("/user/{username}")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
-  public UserObject loadPanel(@PathVariable String username) {
+  public User loadPanel(@PathVariable String username) {
     return userService.findByUsername(username);
   }
 
   @GetMapping("/user")
-  public List<UserObject> getUsers() {
+  public List<User> getUsers() {
     return userService.getAllUsers();
   }
 
   @PostMapping("/user/{username}/change/password/{password}")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
   public void changePassword(@PathVariable String username, @PathVariable String password) {
-    UserObject userObject = userService.findByUsername(username);
-    userService.save(new UserObject(userObject.getId(), userObject.getUsername(), password, userObject.getEmail(),
+    User userObject = userService.findByUsername(username);
+    userService.save(new User(userObject.getId(), userObject.getUsername(), password, userObject.getEmail(),
         userObject.getAvatar(), userObject.getPoints(),userObject.getPreference(), userObject.getRole()));
   }
 }

@@ -3,7 +3,7 @@ package com.attraction.ranking;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.attraction.user.UserObjectService;
+import com.attraction.user.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class RankingService {
 
   @Autowired
-  UserObjectService userService;
+  UserService userService;
 
   List<RankingEntity> loadSortedList() {
     return userService.getAllUsers().stream().sorted()

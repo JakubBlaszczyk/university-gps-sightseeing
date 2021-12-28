@@ -8,7 +8,7 @@ import lombok.Value;
 
 @Document("users")
 @Value
-public class UserObject implements Comparable<UserObject> {
+public class User implements Comparable<User> {
 
   @Id
   Integer id;
@@ -22,7 +22,7 @@ public class UserObject implements Comparable<UserObject> {
   Role role;
 
   @Override
-  public int compareTo(UserObject temp) {
+  public int compareTo(User temp) {
     return this.points - temp.getPoints();
   }
 }

@@ -1,6 +1,6 @@
 package com.attraction.security;
 
-import com.attraction.user.UserObject;
+import com.attraction.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -31,7 +31,7 @@ public class CustomUserDetails implements UserDetails {
     this.authorities = authorities;
   }
 
-  public static CustomUserDetails build(UserObject userObject) {
+  public static CustomUserDetails build(User userObject) {
     GrantedAuthority authorities = new SimpleGrantedAuthority(userObject.getRole().toString());
 
     return new CustomUserDetails(
