@@ -23,16 +23,19 @@ public class MonumentPanelController {
   }
 
   @GetMapping("/monuments")
+  @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
   public @ResponseBody List<Monument> loadMonuments() {
     return monumentService.getMonumets();
   }
 
   @GetMapping("/monuments/{id}")
-  public @ResponseBody List<Monument> loadMonument(@PathVariable Integer id) {
-    return monumentService.getMonumets();
+  @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
+  public @ResponseBody Monument loadMonument(@PathVariable Integer id) {
+    return monumentService.getMonument(id);
   }
 
   @PostMapping("/monument/{name}/{longitude}/{latitude}/{description}/{type}/{photo}/{city}")
+  @PreAuthorize("hasAnyAuthority('GUIDE', 'ADMIN')")
   public @ResponseBody List<Monument> addMonument(@PathVariable String name, @PathVariable Double longitude,
       @PathVariable Double latitude, @PathVariable String description,
       @PathVariable String type, @PathVariable String photo, @PathVariable String city) {

@@ -12,7 +12,7 @@ public class RoutePanelController {
 
   @Autowired
   private RouteService routeService;
-  @GetMapping("/route")
+  @GetMapping("/routes")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
   public List<Route> loadPanel() {
     return routeService.getAllRoutes();

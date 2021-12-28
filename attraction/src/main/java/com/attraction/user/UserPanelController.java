@@ -23,7 +23,8 @@ public class UserPanelController {
     return userService.findByUsername(username);
   }
 
-  @GetMapping("/user")
+  @GetMapping("/users")
+  @PreAuthorize("hasAnyAuthority('ADMIN')")
   public List<User> getUsers() {
     return userService.getAllUsers();
   }
