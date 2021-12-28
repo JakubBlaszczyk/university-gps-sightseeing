@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,7 +29,7 @@ public class UserObjectService {
   public UserObject findByUsername(String username) {
     Optional<UserObject> result = userRepo.findOne(Example.of(new UserObject(null, username, null, null, null, null, null, null)));
     if (!result.isPresent()) {
-      throw new RuntimeException();
+      throw new UsernameNotFoundException("No such username");
     }
     return  result.get();
   }
