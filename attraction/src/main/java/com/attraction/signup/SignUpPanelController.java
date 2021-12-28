@@ -8,19 +8,19 @@ import com.attraction.user.UserObjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
 
 import javax.validation.Valid;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RestController
+@Controller
 @Slf4j
 public class SignUpPanelController {
 
@@ -36,7 +36,7 @@ public class SignUpPanelController {
   }
 
   @PostMapping("/signup")
-  public ResponseEntity<MessageResponse> createNewUser(@Valid SignupRequest signupRequest,
+  public @ResponseBody ResponseEntity<MessageResponse> createNewUser(@Valid SignupRequest signupRequest,
       BindingResult bindingResult) {
     validateInput(bindingResult);
     if (Boolean.TRUE.equals(userRepoService.existsByUsername(signupRequest.getUsername()))) {
@@ -82,7 +82,7 @@ public class SignUpPanelController {
   private void validateInput(BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
       log.debug(bindingResult.getAllErrors().toString());
-      throw new RuntimeException(bindingResult.getAllErrors().toString());
+      throw new ValidationException(bindingResult.getAllErrors().toString());
     }
   }
 }
