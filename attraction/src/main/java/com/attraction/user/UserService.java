@@ -14,8 +14,9 @@ public class UserService {
   @Autowired
   UserRepository userRepo;
 
-  public Integer findMaxId() {
-    return this.userRepo.findAll().size();
+  public Integer getNewId() {
+    List<User> usersList = userRepo.findAll();
+    return usersList.get(usersList.size() - 1).getId();
   }
 
   public Boolean existsByEmail(String email) {

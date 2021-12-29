@@ -72,7 +72,7 @@ public class SignUpPanelController {
       }
     }
 
-    userRepoService.save(new User(userRepoService.findMaxId() + 1, signupRequest.getUsername(),
+    userRepoService.save(new User(userRepoService.getNewId(), signupRequest.getUsername(),
         encoder.encode(signupRequest.getPassword()), signupRequest.getEmail(), "", Integer.valueOf(0), "", "",
         role));
 
