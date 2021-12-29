@@ -34,6 +34,12 @@ public class MonumentPanelController {
     return monumentService.getMonument(id);
   }
 
+  @GetMapping("/monuments/city/{city}")
+  @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
+  public @ResponseBody List<Monument> loadMonumentsByCity(@PathVariable String city) {
+    return monumentService.getMonumentByCity(city);
+  }
+
   @PostMapping("/monument/{name}/{longitude}/{latitude}/{description}/{type}/{photo}/{city}")
   @PreAuthorize("hasAnyAuthority('GUIDE', 'ADMIN')")
   public @ResponseBody List<Monument> addMonument(@PathVariable String name, @PathVariable Double longitude,
