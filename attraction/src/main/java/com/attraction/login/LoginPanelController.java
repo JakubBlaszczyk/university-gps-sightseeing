@@ -4,6 +4,8 @@ import com.attraction.security.CustomUserDetails;
 import com.attraction.security.jwt.JwtResponse;
 import com.attraction.security.jwt.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -42,11 +44,14 @@ public class LoginPanelController {
 
     CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 
-    return ResponseEntity.ok(new JwtResponse(
-        jwt,
-        userDetails.getId(),
-        userDetails.getUsername(),
-        userDetails.getEmail(),
-        userDetails.getAuthority().getAuthority()));
+    HttpHeaders responseHeader = new HttpHeaders();
+    responseHeader.set("Set-Cookie", "access_token=" + jwt);
+    JwtResponse jwtResponse = new JwtResponse(
+            jwt,
+            userDetails.getId(),
+            userDetails.getUsername(),
+            userDetails.getEmail(),
+            userDetails.getAuthority().getAuthority());
+    return new ResponseEntity<>(jwtResponse, responseHeader, HttpStatus.OK);
   }
 }
