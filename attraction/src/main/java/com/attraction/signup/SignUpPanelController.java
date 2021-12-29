@@ -55,7 +55,7 @@ public class SignUpPanelController {
     Role role;
 
     if (strRoles == null) {
-      return ResponseEntity.badRequest().body(new MessageResponse("Error: Passed role is null"));
+      role = Role.USER;
     } else {
       switch (strRoles) {
         case "admin":
