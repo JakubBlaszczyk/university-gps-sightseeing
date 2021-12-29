@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import javax.validation.Valid;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -44,14 +41,12 @@ public class LoginPanelController {
     String jwt = jwtUtils.generateJwtToken(authentication);
 
     CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-    List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
-        .collect(Collectors.toList());
 
     return ResponseEntity.ok(new JwtResponse(
         jwt,
         userDetails.getId(),
         userDetails.getUsername(),
         userDetails.getEmail(),
-        roles));
+        userDetails.getAuthority().getAuthority()));
   }
 }

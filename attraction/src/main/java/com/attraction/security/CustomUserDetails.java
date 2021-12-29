@@ -14,7 +14,7 @@ import java.util.List;
 @Value
 public class CustomUserDetails implements UserDetails {
 
-  String id;
+  Integer id;
   String username;
   String email;
 
@@ -23,19 +23,11 @@ public class CustomUserDetails implements UserDetails {
 
   GrantedAuthority authorities;
 
-  public CustomUserDetails(String id, String username, String email, String password, GrantedAuthority authorities) {
-    this.id = id;
-    this.username = username;
-    this.email = email;
-    this.password = password;
-    this.authorities = authorities;
-  }
-
   public static CustomUserDetails build(User userObject) {
     GrantedAuthority authorities = new SimpleGrantedAuthority(userObject.getRole().toString());
 
     return new CustomUserDetails(
-            userObject.getId().toString(),
+            userObject.getId(),
             userObject.getUsername(),
             userObject.getEmail(),
             userObject.getPassword(),
@@ -46,6 +38,10 @@ public class CustomUserDetails implements UserDetails {
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return List.of(this.authorities);
+  }
+
+  public GrantedAuthority getAuthority() {
+    return this.authorities;
   }
 
   @Override
