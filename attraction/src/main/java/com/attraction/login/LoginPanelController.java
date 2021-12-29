@@ -33,6 +33,11 @@ public class LoginPanelController {
     return "login";
   }
 
+  @GetMapping("/password-reset")
+  public String loadResetPanel() {
+    return "password_reset";
+  }
+
   @PostMapping("/login")
   public ResponseEntity<JwtResponse> login(@Valid LoginRequest loginRequest) {
 
