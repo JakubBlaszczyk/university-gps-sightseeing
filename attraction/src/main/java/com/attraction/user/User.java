@@ -18,7 +18,8 @@ public class User implements Comparable<User> {
   String email;
   String avatar;
   Integer points;
-  String preference;
+  String preferredCity;
+  String preferredMonument;
   Role role;
 
   @Override

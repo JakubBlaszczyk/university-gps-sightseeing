@@ -73,7 +73,7 @@ public class SignUpPanelController {
     }
 
     userRepoService.save(new User(userRepoService.findMaxId() + 1, signupRequest.getUsername(),
-        encoder.encode(signupRequest.getPassword()), signupRequest.getEmail(), "", Integer.valueOf(0), "",
+        encoder.encode(signupRequest.getPassword()), signupRequest.getEmail(), "", Integer.valueOf(0), "", "",
         role));
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));

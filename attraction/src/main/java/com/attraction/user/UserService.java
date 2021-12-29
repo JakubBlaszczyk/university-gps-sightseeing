@@ -19,19 +19,20 @@ public class UserService {
   }
 
   public Boolean existsByEmail(String email) {
-    return userRepo.exists(Example.of(new User(null, null, null, email, null, null, null, null)));
+    return userRepo.exists(Example.of(new User(null, null, null, email, null, null, null, null, null)));
   }
 
   public Boolean existsByUsername(String username) {
-    return userRepo.exists(Example.of(new User(null, username, null, null, null, null, null, null)));
+    return userRepo.exists(Example.of(new User(null, username, null, null, null, null, null, null, null)));
   }
 
   public User findByUsername(String username) {
-    Optional<User> result = userRepo.findOne(Example.of(new User(null, username, null, null, null, null, null, null)));
+    Optional<User> result = userRepo
+        .findOne(Example.of(new User(null, username, null, null, null, null, null, null, null)));
     if (!result.isPresent()) {
       throw new UsernameNotFoundException("No such username");
     }
-    return  result.get();
+    return result.get();
   }
 
   public List<User> getAllUsers() {
@@ -40,5 +41,14 @@ public class UserService {
 
   public void save(User object) {
     userRepo.save(object);
+  }
+
+  public User findByPassword(String password) {
+    Optional<User> result = userRepo
+        .findOne(Example.of(new User(null, null, password, null, null, null, null, null, null)));
+    if (!result.isPresent()) {
+      throw new UsernameNotFoundException("No such username");
+    }
+    return result.get();
   }
 }
