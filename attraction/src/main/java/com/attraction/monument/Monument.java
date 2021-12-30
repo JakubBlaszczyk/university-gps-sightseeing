@@ -14,10 +14,9 @@ public class Monument {
 
   String name;
   Integer priority;
-  Double longitude;
-  Double latitude;
   String description;
   String type;
   String photo;
   String city;
+  String mapUrl;
 }

@@ -8,7 +8,7 @@
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>monument</title>
     <link rel="stylesheet" href="css/nicepage.css" media="screen">
-    <link rel="stylesheet" href="css/monument.css" media="screen">
+    <link rel="stylesheet" href="css/monument_panel.css" media="screen">
     <script class="u-script" type="text/javascript" src="js/jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 3.17.2, nicepage.com">
@@ -40,10 +40,10 @@
         </div>
         <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-custom-color-3 u-text-hover-custom-color-1" href="/" style="padding: 10px 48px;">Strona główna</a>
-            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-custom-color-3 u-text-hover-custom-color-1" href="monument" style="padding: 10px 48px;">Atrakcje</a>
-            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-custom-color-3 u-text-hover-custom-color-1" href="route" style="padding: 10px 48px;">Trasy</a>
-            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-custom-color-3 u-text-hover-custom-color-1" href="ranking" style="padding: 10px 48px;">Ranking</a>
-            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-custom-color-3 u-text-hover-custom-color-1" href="login" style="padding: 10px 48px;">Logowanie</a>
+            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-custom-color-3 u-text-hover-custom-color-1" href="/monument" style="padding: 10px 48px;">Atrakcje</a>
+            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-custom-color-3 u-text-hover-custom-color-1" href="/route" style="padding: 10px 48px;">Trasy</a>
+            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-custom-color-3 u-text-hover-custom-color-1" href="/ranking" style="padding: 10px 48px;">Ranking</a>
+            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-custom-color-3 u-text-hover-custom-color-1" href="/login" style="padding: 10px 48px;">Logowanie</a>
             </li></ul>
         </div>
         <div class="u-custom-menu u-nav-container-collapse">
@@ -51,10 +51,10 @@
                 <div class="u-sidenav-overflow">
                     <div class="u-menu-close"></div>
                     <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/" style="padding: 10px 20px;">Strona główna</a>
-                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="monument" style="padding: 10px 20px;">Atrakcje</a>
-                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="route" style="padding: 10px 20px;">Trasy</a>
-                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="ranking" style="padding: 10px 20px;">Ranking</a>
-                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="login" style="padding: 10px 20px;">Logowanie</a>
+                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/monument" style="padding: 10px 20px;">Atrakcje</a>
+                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/route" style="padding: 10px 20px;">Trasy</a>
+                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/ranking" style="padding: 10px 20px;">Ranking</a>
+                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/login" style="padding: 10px 20px;">Logowanie</a>
                     </li></ul>
                 </div>
             </div>
@@ -108,21 +108,21 @@
 <section class="u-clearfix u-section-2" id="sec-ce02">
     <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xl u-sheet-1">
         <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
-            <div class="u-layout">
-                <div class="u-layout-row">
-                    <div class="u-align-center u-container-style u-layout-cell u-left-cell u-size-19 u-layout-cell-1">
-                        <div class="u-container-layout u-container-layout-1">
-                            <div alt="" class="u-image u-image-circle u-image-1" src="" data-image-width="1280" data-image-height="852"></div>
-                        </div>
-                    </div>
-                    <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-41 u-layout-cell-2">
-                        <div class="u-container-layout u-valign-top u-container-layout-2">
-                            <h2 class="u-text u-text-1">Nazwa atrakcji</h2>
-                            <p class="u-text u-text-2">Opis atrakcji. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id suscipit ex. Suspendisse rhoncus laoreet purus quis elementum. Phasellus sed efficitur dolor, et ultricies sapien. Quisque fringilla sit amet dolor commodo efficitur. Aliquam et sem odio. In ullamcorper nisi nunc, et molestie ipsum iaculis sit amet.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <table class="monument-table">
+                <tr>
+                    <th></th>
+                    <th>Nazwa</th>
+                    <th>Miasto</th>
+                    <th>Liczba punktów</th>
+                </tr>
+                <tr th:each="monument : ${monuments}">
+                    <td><img th:src="${monument.photo}"></td>
+                    <td><a th:href="${{'/monuments/' + monument.id}}" th:text="${monument.name}"></a></td>
+                    <td th:text="${monument.city}"></td>
+                    <td th:text="${monument.priority}"></td>
+                </tr>
+            </table>
+
         </div>
     </div>
 </section>

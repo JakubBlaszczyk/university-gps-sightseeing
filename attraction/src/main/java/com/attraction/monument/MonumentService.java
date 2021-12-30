@@ -22,6 +22,6 @@ public class MonumentService {
   }
 
   List<Monument> getMonumentByCity(String city) {
-    return monumentRepo.findAll(Example.of(new Monument(null, null, null, null, null, null, null, null, city)));
+    return monumentRepo.findAll(Example.of(new Monument(null, null, null, null, null, null, city, null)));
   }
 }
