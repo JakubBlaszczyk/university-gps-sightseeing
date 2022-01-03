@@ -7,6 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class RoutePanelController {
@@ -22,13 +23,13 @@ public class RoutePanelController {
 
   @GetMapping("/routes")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
-  public List<Route> loadRoutesList() {
+  public @ResponseBody List<Route> loadRoutesList() {
     return routeService.getAllRoutes();
   }
 
   @GetMapping("/route/{id}")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
-  public Route loadRoute(@PathVariable Integer id) {
+  public @ResponseBody Route loadRoute(@PathVariable Integer id) {
     return routeService.getRoute(id);
   }
 
