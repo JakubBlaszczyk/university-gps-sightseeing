@@ -16,7 +16,7 @@ public class MonumentService {
     return monumentRepo.findAll();
   }
 
-  Monument getMonument(Integer id) {
+  public Monument getMonument(Integer id) {
     Optional<Monument> result = monumentRepo.findById(id);
     return result.isPresent() ? result.get() : null;
   }
