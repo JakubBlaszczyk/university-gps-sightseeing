@@ -12,7 +12,7 @@ public class MonumentService {
   @Autowired
   MonumentRepository monumentRepo;
 
-  public List<Monument> getMonumets() {
+  public List<Monument> getMonuments() {
     return monumentRepo.findAll();
   }
 

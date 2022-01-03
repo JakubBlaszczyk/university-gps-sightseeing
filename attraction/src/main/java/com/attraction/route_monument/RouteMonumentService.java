@@ -27,7 +27,7 @@ public class RouteMonumentService {
     if (routeService.getAllRoutes().stream().anyMatch(n -> n.getId().equals(request.getRouteId()))) {
       return false;
     }
-    if (monumentService.getMonumets().stream().anyMatch(n -> n.getId().equals(request.getMonumentId()))) {
+    if (monumentService.getMonuments().stream().anyMatch(n -> n.getId().equals(request.getMonumentId()))) {
       return false;
     }
     routeMonumentRepository

@@ -19,14 +19,14 @@ public class MonumentPanelController {
   @GetMapping("/monument")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
   public String loadPanel(Model model) {
-    model.addAttribute("monuments", monumentService.getMonumets());
+    model.addAttribute("monuments", monumentService.getMonuments());
     return "monument_panel";
   }
 
   @GetMapping("/monuments")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
   public @ResponseBody List<Monument> loadMonuments() {
-    return monumentService.getMonumets();
+    return monumentService.getMonuments();
   }
 
   @GetMapping("/monuments/{id}")
