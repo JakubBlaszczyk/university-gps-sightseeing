@@ -2,6 +2,7 @@ package com.attraction.monument;
 
 import java.util.List;
 
+import com.attraction.comment.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,9 @@ public class MonumentPanelController {
 
   @Autowired
   MonumentService monumentService;
+
+  @Autowired
+  CommentService commentService;
 
   @GetMapping("/monument")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
@@ -33,6 +37,7 @@ public class MonumentPanelController {
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
   public String loadMonument(@PathVariable Integer id, Model model) {
     model.addAttribute("monument", monumentService.getMonument(id));
+    model.addAttribute("comments", commentService.getMonumentComments(id));
     return "monument";
   }
 

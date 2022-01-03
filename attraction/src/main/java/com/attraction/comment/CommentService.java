@@ -1,6 +1,7 @@
 package com.attraction.comment;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -15,15 +16,15 @@ public class CommentService {
     return commentRepository.findAll();
   }
 
-  List<Comment> getMonumentComments(Integer monumentId) {
-    return commentRepository.findAll(Example.of(new Comment(null, null, monumentId, null, null, null)));
+  public List<Comment> getMonumentComments(Integer monumentId) {
+    return commentRepository.findAll(Example.of(new Comment(null, null, monumentId, null, null, null, null, null)));
   }
 
-  List<Comment> getRouteComments(Integer routeId) {
-    return commentRepository.findAll(Example.of(new Comment(null, null, null, routeId, null, null)));
+  public List<Comment> getRouteComments(Integer routeId) {
+    return commentRepository.findAll(Example.of(new Comment(null, null, null, routeId, null, null, null, null)));
   }
 
-  List<Comment> getUserComments(Integer userId) {
-    return commentRepository.findAll(Example.of(new Comment(null, userId, null, null, null, null)));
+  public List<Comment> getUserComments(Integer userId) {
+    return commentRepository.findAll(Example.of(new Comment(null, userId, null, null, null, null, null, null)));
   }
 }
