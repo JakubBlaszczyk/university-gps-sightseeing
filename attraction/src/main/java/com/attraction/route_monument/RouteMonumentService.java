@@ -23,6 +23,18 @@ public class RouteMonumentService {
   @Autowired
   RouteMonumentRepository routeMonumentRepository;
 
+  Boolean addRouteMonument(RouteMonumentRequest request) {
+    if (routeService.getAllRoutes().stream().anyMatch(n -> n.getId().equals(request.getRouteId()))) {
+      return false;
+    }
+    if (monumentService.getMonumets().stream().anyMatch(n -> n.getId().equals(request.getMonumentId()))) {
+      return false;
+    }
+    routeMonumentRepository
+        .save(new RouteMonument(new Key(request.getRouteId(), request.getMonumentId()), request.getPosition()));
+    return true;
+  }
+
   public List<Monument> getMonumentOnTheRoute(Integer routeId) {
     List<RouteMonument> routeMonuments = routeMonumentRepository.findAll().stream()
         .filter(n -> n.getId().getRouteId().equals(routeId)).collect(Collectors.toList());

@@ -3,8 +3,10 @@ package com.attraction.route_monument;
 import java.util.List;
 
 import com.attraction.monument.Monument;
+import com.attraction.security.MessageResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,13 @@ public class RouteMonumentPanelController {
 
   @Autowired
   RouteMonumentService routeMonumentService;
+
+  public ResponseEntity<MessageResponse> connectRouteWithMonument(RouteMonumentRequest request) {
+    if (Boolean.TRUE.equals(routeMonumentService.addRouteMonument(request))) {
+      return ResponseEntity.ok(new MessageResponse("Connected successfully"));
+    }
+    return ResponseEntity.badRequest().body(new MessageResponse("Such and object doesn't exist"));
+  }
 
   @GetMapping("/route/{id}/monuments")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")

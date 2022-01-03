@@ -12,7 +12,7 @@ public class MonumentService {
   @Autowired
   MonumentRepository monumentRepo;
 
-  List<Monument> getMonumets() {
+  public List<Monument> getMonumets() {
     return monumentRepo.findAll();
   }
 
@@ -21,7 +21,7 @@ public class MonumentService {
     return result.isPresent() ? result.get() : null;
   }
 
-  List<Monument> getMonumentByCity(String city) {
+  public List<Monument> getMonumentByCity(String city) {
     return monumentRepo.findAll(Example.of(new Monument(null, null, null, null, null, null, city, null)));
   }
 }

@@ -1,7 +1,6 @@
 package com.attraction.route_monument;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Value;
@@ -19,8 +18,6 @@ public class RouteMonument {
 
 @Value
 class Key {
-    @DBRef
     Integer routeId;
-    @DBRef
     Integer monumentId;
   }
