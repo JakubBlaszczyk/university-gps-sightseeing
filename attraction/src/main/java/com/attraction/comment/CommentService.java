@@ -51,10 +51,7 @@ public class CommentService {
     if (userService.getAllUsers().stream().noneMatch(n -> n.getId().equals(request.getUserId()))) {
       return false;
     }
-    if (monumentService.getMonuments().stream().noneMatch(n -> n.getId().equals(request.getMonumentId()))) {
-      return false;
-    }
-    if (routeService.getAllRoutes().stream().noneMatch(n -> n.getId().equals(request.getRouteId()))) {
+    if (!(monumentService.getMonuments().stream().noneMatch(n -> n.getId().equals(request.getMonumentId())) ^ routeService.getAllRoutes().stream().noneMatch(n -> n.getId().equals(request.getRouteId())))) {
       return false;
     }
     commentRepository.save(new Comment(findLastId(), request.getUserId(), request.getMonumentId(), request.getRouteId(),
