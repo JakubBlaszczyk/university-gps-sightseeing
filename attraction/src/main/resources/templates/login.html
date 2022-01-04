@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="css/login.css" media="screen">
     <script class="u-script" type="text/javascript" src="js/jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="js/showHide.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="js/jquery.cookie.js" defer=""></script>
     <meta name="generator" content="Nicepage 3.17.2, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
 
@@ -76,9 +78,14 @@
 	c0,1.101,0.494,2.128,1.34,2.821c0.81,3.173,2.477,5.575,3.093,6.389v2.894c0,0.816-0.445,1.566-1.162,1.958l-7.907,4.313
 	c-0.252,0.137-0.502,0.297-0.752,0.476C5.276,41.792,2,35.022,2,27.5z"></path></svg></span>
 </div></header>
-<section class="u-align-center u-clearfix u-section-1" id="sec-7c7e">
+<section class="login-panel u-align-center u-clearfix u-section-1" id="sec-7c7e">
     <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-form u-form-1">
+            <div>
+                <p class="error-message u-form-send-error">
+                    Błędne dane!
+                </p>
+            </div>
             <form th:action="@{/login}" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="custom" name="form">
                 <div class="u-form-group u-form-name u-form-group-1">
                     <label for="name-6797" class="u-form-control-hidden u-label">Name</label>
@@ -89,7 +96,7 @@
                     <input type="password" placeholder="Hasło" id="text-a6f8" name="password" class="u-border-1 u-border-grey-30 u-input u-input-rectangle">
                 </div>
                 <div class="u-align-center u-form-group u-form-submit u-form-group-3">
-                    <a href="#" class="u-btn u-btn-round u-btn-submit u-button-style u-custom-color-3 u-radius-20 u-btn-1">Zaloguj</a>
+                    <a href="#" class="login-button u-btn u-btn-round u-btn-submit u-button-style u-custom-color-3 u-radius-20 u-btn-1">Zaloguj</a>
                     <input type="submit" value="submit" class="u-form-control-hidden">
                 </div>
             </form>
@@ -98,6 +105,11 @@
             <a class="u-active-none u-btn u-button-link u-button-style u-hover-none u-none u-text-custom-color-2 u-btn-2" href="/signup">Nie masz jeszcze konta?</a>
         </p>
         <a class="u-active-none u-btn u-button-link u-button-style u-hover-none u-none u-text-custom-color-2 u-btn-3" href="/password-reset">Zapomniałeś hasła?</a>
+    </div>
+</section>
+<section class="logout-panel u-align-center u-clearfix u-section-1">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <a href="#" class="logout-button u-btn u-btn-round u-button-style u-custom-color-3 u-radius-20 u-btn-1">Wyloguj</a>
     </div>
 </section>
 

@@ -56,3 +56,13 @@
     width: 100%;
   }
 }
+
+.logout-button {
+  margin-top: 20%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.error-message {
+  color: #0f0f0f;
+}

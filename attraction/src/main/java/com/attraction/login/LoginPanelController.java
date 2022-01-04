@@ -50,13 +50,13 @@ public class LoginPanelController {
     CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 
     HttpHeaders responseHeader = new HttpHeaders();
-    responseHeader.set("Set-Cookie", "access_token=" + jwt);
+    responseHeader.add("Set-Cookie", "access_token=" + jwt);
     JwtResponse jwtResponse = new JwtResponse(
             jwt,
             userDetails.getId(),
             userDetails.getUsername(),
             userDetails.getEmail(),
             userDetails.getAuthority().getAuthority());
-    return new ResponseEntity<>(jwtResponse, responseHeader, HttpStatus.OK);
+    return ResponseEntity.status(HttpStatus.OK).headers(responseHeader).body(jwtResponse);
   }
 }
