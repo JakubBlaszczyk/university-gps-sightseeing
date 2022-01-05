@@ -50,12 +50,28 @@ public class UserPanelController {
       @Valid UserRequest userRequest, BindingResult bindingResult) {
     validateInput(bindingResult);
     User user = userService.findByUsername(jwtUtils.getUserNameFromJwtToken(Cookie.substring(Cookie.indexOf('=') + 1)));
+    if (user == null) {
+      return ResponseEntity.badRequest().body(new MessageResponse("User doesn't exist"));
+    }
     String password = userRequest.getPassword() != null ? userRequest.getPassword() : user.getPassword();
     String email = userRequest.getEmail() != null ? userRequest.getEmail() : user.getEmail();
     String username = userRequest.getUsername() != null ? userRequest.getUsername() : user.getUsername();
     userService.save(new User(user.getId(), username, password, email,
         user.getAvatar(), user.getPoints(), user.getPreferredCity(), user.getPreferredMonument(), user.getRole()));
     return ResponseEntity.ok(new MessageResponse("Changed user profile"));
+  }
+
+  @PostMapping("/user/points")
+  @PreAuthorize("hasAnyAuthority('ADMIN')")
+  public @ResponseBody ResponseEntity<MessageResponse> changeUserAttributes(Integer userId, Integer addPoints) {
+    User user = userService.findById(userId);
+    if (user == null) {
+      return ResponseEntity.badRequest().body(new MessageResponse("User doesn't exist"));
+    }
+    userService.save(new User(userId, user.getUsername(), user.getPassword(), user.getEmail(),
+        user.getAvatar(), user.getPoints() + addPoints, user.getPreferredCity(), user.getPreferredMonument(),
+        user.getRole()));
+    return ResponseEntity.ok(new MessageResponse("Added points"));
   }
 
   private void validateInput(BindingResult bindingResult) {
