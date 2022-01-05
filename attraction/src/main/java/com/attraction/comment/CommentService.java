@@ -48,14 +48,20 @@ public class CommentService {
   }
 
   public Boolean addComment(CommentRequest request) {
+    if (request.getMonumentId() != null ^ request.getRouteId() != null) {
+      return false;
+    }
     if (userService.getAllUsers().stream().noneMatch(n -> n.getId().equals(request.getUserId()))) {
       return false;
     }
-    if (!(monumentService.getMonuments().stream().noneMatch(n -> n.getId().equals(request.getMonumentId())) ^ routeService.getAllRoutes().stream().noneMatch(n -> n.getId().equals(request.getRouteId())))) {
+    if (!(monumentService.getMonuments().stream().noneMatch(n -> n.getId().equals(request.getMonumentId()))
+        ^ routeService.getAllRoutes().stream().noneMatch(n -> n.getId().equals(request.getRouteId())))) {
       return false;
     }
-    commentRepository.save(new Comment(findLastId() + 1, request.getUserId(), request.getMonumentId(), request.getRouteId(),
-        request.getStars(), request.getContent(), java.time.LocalDate.now().toString(), java.time.LocalTime.now().toString()));
+    commentRepository
+        .save(new Comment(findLastId() + 1, request.getUserId(), request.getMonumentId(), request.getRouteId(),
+            request.getStars(), request.getContent(), java.time.LocalDate.now().toString(),
+            java.time.LocalTime.now().toString()));
     return true;
   }
 }
