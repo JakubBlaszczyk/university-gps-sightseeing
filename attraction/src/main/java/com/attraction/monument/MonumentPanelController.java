@@ -37,7 +37,9 @@ public class MonumentPanelController {
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
   public String loadMonument(@PathVariable Integer id, Model model) {
     model.addAttribute("monument", monumentService.getMonument(id));
+
     model.addAttribute("comments", commentService.getMonumentComments(id));
+
     return "monument";
   }
 

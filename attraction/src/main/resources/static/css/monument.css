@@ -283,29 +283,25 @@
 
     .u-section-2 .u-image-1 {
         margin-top: 13px;
-        margin-left: 37px;
     }
 
     .u-section-2 .u-text-2 {
         width: auto;
-        margin-top: -81px;
-        margin-right: 79px;
     }
 
     .u-section-2 .u-text-3 {
-        width: auto;
         margin-top: 2px;
-        margin-right: 98px;
-        margin-left: 192px;
     }
 
     .u-section-2 .u-text-4 {
         width: auto;
-        margin-right: 34px;
-        margin-left: 128px;
     }
 
     .u-section-2 .u-form-1 {
         width: 340px;
+    }
+
+    .u-input {
+        width: 70%;
     }
 }

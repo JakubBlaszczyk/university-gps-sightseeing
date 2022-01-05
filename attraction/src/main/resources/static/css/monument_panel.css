@@ -159,6 +159,10 @@
     .u-section-2 .u-layout-cell-2 {
         min-height: 275px;
     }
+
+    .u-section-2 .u-sheet-1 .hide-this {
+        display: none;
+    }
 }
 
 .monument-table {

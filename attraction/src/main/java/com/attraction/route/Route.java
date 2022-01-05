@@ -16,5 +16,6 @@ public class Route {
   Integer length;
   String description;
   String city;
-  String mapLink;
+  String mapUrl;
+  String photo;
 }

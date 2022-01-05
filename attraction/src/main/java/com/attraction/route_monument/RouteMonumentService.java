@@ -1,6 +1,7 @@
 package com.attraction.route_monument;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,6 +40,7 @@ public class RouteMonumentService {
   public List<Monument> getMonumentOnTheRoute(Integer routeId) {
     List<RouteMonument> routeMonuments = routeMonumentRepository.findAll().stream()
         .filter(n -> n.getId().getRouteId().equals(routeId)).collect(Collectors.toList());
+    routeMonuments.sort(Comparator.comparing(RouteMonument::getPosition));
     List<Monument> result = new ArrayList<>(routeMonuments.size());
     for (RouteMonument routeMonument : routeMonuments) {
       result.add(monumentService.getMonument(routeMonument.getId().getMonumentId()));

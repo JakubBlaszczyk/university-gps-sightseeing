@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,10 +33,12 @@ public class UserPanelController {
   @Autowired
   JwtUtils jwtUtils;
 
-  @GetMapping("/user/{username}")
+  @GetMapping("/user")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
-  public @ResponseBody User loadPanel(@PathVariable String username) {
-    return userService.findByUsername(username);
+  public String loadPanel(@RequestHeader String Cookie, Model model) {
+    User user = userService.findByUsername(jwtUtils.getUserNameFromJwtToken(Cookie.substring(Cookie.indexOf('=') + 1)));
+    model.addAttribute("user", user);
+    return "user";
   }
 
   @GetMapping("/users")
@@ -44,7 +47,7 @@ public class UserPanelController {
     return userService.getAllUsers();
   }
 
-  @PostMapping("/user")
+  @PostMapping("/user/update")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
   public @ResponseBody ResponseEntity<MessageResponse> changeUserAttributes(@RequestHeader String Cookie,
       @Valid UserRequest userRequest, BindingResult bindingResult) {
