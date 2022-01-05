@@ -38,6 +38,12 @@ public class UserService {
     return result.isPresent() ? result.get() : null;
   }
 
+  public User findByEmail(String email) {
+    Optional<User> result = userRepo
+        .findOne(Example.of(new User(null, null, null, email, null, null, null, null, null)));
+    return result.isPresent() ? result.get() : null;
+  }
+
   public List<User> getAllUsers() {
     return userRepo.findAll();
   }

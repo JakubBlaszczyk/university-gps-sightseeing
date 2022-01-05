@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
 
@@ -33,13 +34,13 @@ public class LoginPanelController {
     return "login";
   }
 
-  @GetMapping("/password-reset")
+  @GetMapping("/password/reset")
   public String loadResetPanel() {
     return "password_reset";
   }
 
   @PostMapping("/login")
-  public ResponseEntity<JwtResponse> login(@Valid LoginRequest loginRequest) {
+  public @ResponseBody ResponseEntity<JwtResponse> login(@Valid LoginRequest loginRequest) {
 
     Authentication authentication = authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
