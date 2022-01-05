@@ -1,7 +1,6 @@
 package com.attraction.comment;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.attraction.monument.MonumentService;
 import com.attraction.route.RouteService;
@@ -35,8 +34,7 @@ public class CommentService {
   }
 
   public List<Comment> getMonumentComments(Integer monumentId) {
-    return commentRepository.findAll().stream().filter(n -> n.getMonumentId().equals(monumentId))
-        .collect(Collectors.toList());
+    return commentRepository.findAll(Example.of(new Comment(null, null, monumentId, null, null, null, null, null)));
   }
 
   public List<Comment> getRouteComments(Integer routeId) {
