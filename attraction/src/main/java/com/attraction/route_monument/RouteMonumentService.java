@@ -11,6 +11,7 @@ import com.attraction.route.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.attraction.route_monument.RouteMonument.Key;
 @Service
 public class RouteMonumentService {
 
@@ -24,10 +25,10 @@ public class RouteMonumentService {
   RouteMonumentRepository routeMonumentRepository;
 
   Boolean addRouteMonument(RouteMonumentRequest request) {
-    if (routeService.getAllRoutes().stream().anyMatch(n -> n.getId().equals(request.getRouteId()))) {
+    if (routeService.getAllRoutes().stream().noneMatch(n -> n.getId().equals(request.getRouteId()))) {
       return false;
     }
-    if (monumentService.getMonuments().stream().anyMatch(n -> n.getId().equals(request.getMonumentId()))) {
+    if (monumentService.getMonuments().stream().noneMatch(n -> n.getId().equals(request.getMonumentId()))) {
       return false;
     }
     routeMonumentRepository
@@ -43,5 +44,9 @@ public class RouteMonumentService {
       result.add(monumentService.getMonument(routeMonument.getId().getMonumentId()));
     }
     return result;
+  }
+
+  public List<RouteMonument> getMonumentsRoutes() {
+    return routeMonumentRepository.findAll();
   }
 }

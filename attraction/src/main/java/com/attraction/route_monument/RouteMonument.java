@@ -12,12 +12,12 @@ public class RouteMonument {
   @Id
   Key id;
 
-  Integer position;
-
-}
-
-@Value
-class Key {
+  @Value
+  static class Key {
     Integer routeId;
     Integer monumentId;
   }
+
+  Integer position;
+
+}

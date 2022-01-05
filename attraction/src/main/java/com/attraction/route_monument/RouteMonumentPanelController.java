@@ -26,12 +26,18 @@ public class RouteMonumentPanelController {
     if (Boolean.TRUE.equals(routeMonumentService.addRouteMonument(request))) {
       return ResponseEntity.ok(new MessageResponse("Connected successfully"));
     }
-    return ResponseEntity.badRequest().body(new MessageResponse("Such and object doesn't exist"));
+    return ResponseEntity.badRequest().body(new MessageResponse("Can't connect"));
   }
 
   @GetMapping("/route/{id}/monuments")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
   public @ResponseBody List<Monument> getMonumentsOnTheRoute(@PathVariable Integer id) {
     return routeMonumentService.getMonumentOnTheRoute(id);
+  }
+
+  @GetMapping("/routes/monuments")
+  @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
+  public @ResponseBody List<RouteMonument> getMonumentsOnTheRoute() {
+    return routeMonumentService.getMonumentsRoutes();
   }
 }
