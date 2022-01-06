@@ -129,6 +129,50 @@
     </div>
   </div>
 </section>
+<section class="u-clearfix u-section-2" id="sec-6876">
+  <div class="u-clearfix u-sheet u-sheet-1">
+    <h4 class="u-text u-text-default u-text-1">Komentarze</h4>
+    <div th:each="comment, commentStat : ${comments}" class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+      <div class="u-layout">
+        <div class="u-layout-row">
+          <div class="u-container-style u-grey-15 u-layout-cell u-radius-20 u-shape-round u-size-9 u-layout-cell-1">
+            <div class="u-border-3 u-border-grey-75 u-container-layout u-container-layout-1">
+              <img class="u-align-center u-image u-image-circle u-preserve-proportions u-image-1" th:src="${{'data:image/jpeg;base64,' + users[commentStat.index].avatar}}" alt="" data-image-width="1280" data-image-height="1280">
+              <h6 th:text="${users[commentStat.index].username}" class="u-align-center u-text u-text-default u-text-2"></h6>
+              <div th:switch="${users[commentStat.index].role.name}">
+                <p th:case="'GUIDE'" class="u-align-center u-text u-text-3">Przewodnik</p>
+                <p th:case="'ADMIN'" class="u-align-center u-text u-text-3">Administrator</p>
+                <p th:case="'USER'" class="u-align-center u-text u-text-3">Użytkownik</p>
+              </div>
+              <p th:text="${comment.date}" class="u-align-center u-text u-text-4"></p>
+              <p th:text="${comment.time}" class="u-align-center u-text u-text-4"></p>
+              <!--<p class="u-align-center u-text u-text-4" th:text="${{'Ocena' + comment.stars}}"></p>-->
+            </div>
+          </div>
+          <div class="u-container-style u-grey-15 u-layout-cell u-radius-20 u-shape-round u-size-51 u-layout-cell-2">
+            <div class="u-border-3 u-border-grey-75 u-container-layout u-container-layout-2">
+              <p th:text="${comment.content}" class="u-text u-text-5"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="u-form u-form-1">
+      <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
+        <input type="hidden" id="siteId" name="siteId" value="15694396">
+        <input type="hidden" id="pageId" name="pageId" value="6144590">
+        <div class="u-form-group u-form-message">
+          <label for="message-d0e9" class="u-label">Dodaj komentarz</label>
+          <textarea placeholder="Wpisz tekst" rows="4" cols="50" id="message-d0e9" name="comment" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required=""></textarea>
+        </div>
+        <div class="u-align-center u-form-group u-form-submit">
+          <a href="#" class="u-btn u-btn-round u-btn-submit u-button-style u-custom-color-3 u-radius-20 u-btn-1" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">Skomentuj</a>
+          <input type="submit" value="submit" class="u-form-control-hidden">
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
 
 <footer class="u-align-center u-clearfix u-custom-color-2 u-footer u-footer" id="sec-6a04"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
   <p class="u-small-text u-text u-text-variant u-text-1">Aplikacja utworzona w ramach projektu z przedmiotu Technologie obiektowe<br>Politechnika Krakowska 2021

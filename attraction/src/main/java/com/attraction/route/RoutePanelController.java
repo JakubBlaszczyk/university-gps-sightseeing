@@ -1,9 +1,14 @@
 package com.attraction.route;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import com.attraction.comment.Comment;
+import com.attraction.comment.CommentService;
 import com.attraction.route_monument.RouteMonumentService;
+import com.attraction.user.User;
+import com.attraction.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -19,6 +24,12 @@ public class RoutePanelController {
 
   @Autowired
   private RouteMonumentService routeMonumentService;
+
+  @Autowired
+  private CommentService commentService;
+
+  @Autowired
+  private UserService userService;
 
   @GetMapping("/route")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
@@ -38,6 +49,15 @@ public class RoutePanelController {
   public String loadRoute(@PathVariable Integer id, Model model) {
     model.addAttribute("route", routeService.getRoute(id));
     model.addAttribute("monuments", routeMonumentService.getMonumentOnTheRoute(id));
+    try {
+      List<Comment> commentList = commentService.getRouteComments(id);
+      model.addAttribute("comments", commentList);
+      List<User> userList = new ArrayList<>();
+      for (Comment comment : commentList){
+        userList.add(userService.findById(comment.getUserId()));
+      }
+      model.addAttribute("users", userList);
+    } catch(NullPointerException e){}
     return "route";
   }
 

@@ -1,8 +1,12 @@
 package com.attraction.monument;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.attraction.comment.Comment;
 import com.attraction.comment.CommentService;
+import com.attraction.user.User;
+import com.attraction.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -19,6 +23,9 @@ public class MonumentPanelController {
 
   @Autowired
   CommentService commentService;
+
+  @Autowired
+  UserService userService;
 
   @GetMapping("/monument")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
@@ -37,8 +44,15 @@ public class MonumentPanelController {
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
   public String loadMonument(@PathVariable Integer id, Model model) {
     model.addAttribute("monument", monumentService.getMonument(id));
-
-    model.addAttribute("comments", commentService.getMonumentComments(id));
+    try {
+      List<Comment> commentList = commentService.getMonumentComments(id);
+      model.addAttribute("comments", commentList);
+      List<User> userList = new ArrayList<>();
+      for (Comment comment : commentList){
+        userList.add(userService.findById(comment.getUserId()));
+      }
+      model.addAttribute("users", userList);
+    } catch(NullPointerException e){}
 
     return "monument";
   }

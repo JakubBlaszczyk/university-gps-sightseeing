@@ -118,14 +118,18 @@
 <section class="u-clearfix u-section-2" id="sec-6876">
   <div class="u-clearfix u-sheet u-sheet-1">
     <h4 class="u-text u-text-default u-text-1">Komentarze</h4>
-    <div th:each="comment : ${comments}" class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+    <div th:each="comment, commentStat : ${comments}" class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
       <div class="u-layout">
         <div class="u-layout-row">
           <div class="u-container-style u-grey-15 u-layout-cell u-radius-20 u-shape-round u-size-9 u-layout-cell-1">
             <div class="u-border-3 u-border-grey-75 u-container-layout u-container-layout-1">
-              <img class="u-align-center u-image u-image-circle u-preserve-proportions u-image-1" src="/images/fec1c622df4826393cb3d5421e3eac85c3a00b62a62fa5d70cffde90ed49e5717a7a0c73624bf54fb2be1fe27e234ac3d9d65466b71290be800582_1280.png" alt="" data-image-width="1280" data-image-height="1280">
-              <h6 class="u-align-center u-text u-text-default u-text-2">Username</h6>
-              <p class="u-align-center u-text u-text-3">Ranga</p>
+              <img class="u-align-center u-image u-image-circle u-preserve-proportions u-image-1" th:src="${{'data:image/jpeg;base64,' + users[commentStat.index].avatar}}" alt="" data-image-width="1280" data-image-height="1280">
+              <h6 th:text="${users[commentStat.index].username}" class="u-align-center u-text u-text-default u-text-2"></h6>
+              <div th:switch="${users[commentStat.index].role.name}">
+                <p th:case="'GUIDE'" class="u-align-center u-text u-text-3">Przewodnik</p>
+                <p th:case="'ADMIN'" class="u-align-center u-text u-text-3">Administrator</p>
+                <p th:case="'USER'" class="u-align-center u-text u-text-3">Użytkownik</p>
+              </div>
               <p th:text="${comment.date}" class="u-align-center u-text u-text-4"></p>
               <p th:text="${comment.time}" class="u-align-center u-text u-text-4"></p>
               <!--<p class="u-align-center u-text u-text-4" th:text="${{'Ocena' + comment.stars}}"></p>-->
@@ -133,7 +137,7 @@
           </div>
           <div class="u-container-style u-grey-15 u-layout-cell u-radius-20 u-shape-round u-size-51 u-layout-cell-2">
             <div class="u-border-3 u-border-grey-75 u-container-layout u-container-layout-2">
-              <p class="u-text u-text-5">Przykładowy tekst. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
+              <p th:text="${comment.content}" class="u-text u-text-5"></p>
             </div>
           </div>
         </div>
