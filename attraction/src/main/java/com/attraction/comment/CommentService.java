@@ -46,20 +46,23 @@ public class CommentService {
   }
 
   public Boolean addComment(CommentRequest request) {
-    if (request.getMonumentId() != null ^ request.getRouteId() != null) {
+    if (!(request.getMonumentId() != null ^ request.getRouteId() != null)) {
       return false;
     }
     if (userService.getAllUsers().stream().noneMatch(n -> n.getId().equals(request.getUserId()))) {
       return false;
     }
-    if (!(monumentService.getMonuments().stream().noneMatch(n -> n.getId().equals(request.getMonumentId()))
-        ^ routeService.getAllRoutes().stream().noneMatch(n -> n.getId().equals(request.getRouteId())))) {
+    Boolean temp1 = monumentService.getMonuments().stream().noneMatch(n -> n.getId().equals(request.getMonumentId()));
+    Boolean temp2 = routeService.getAllRoutes().stream().noneMatch(n -> n.getId().equals(request.getRouteId()));
+    if (!(temp1
+        ^ temp2)) {
       return false;
     }
+    String time = java.time.LocalTime.now().toString();
     commentRepository
         .save(new Comment(findLastId() + 1, request.getUserId(), request.getMonumentId(), request.getRouteId(),
             request.getStars(), request.getContent(), java.time.LocalDate.now().toString(),
-            java.time.LocalTime.now().toString()));
+            time.substring(0, time.length() > 6 ? 8 : time.length())));
     return true;
   }
 }
