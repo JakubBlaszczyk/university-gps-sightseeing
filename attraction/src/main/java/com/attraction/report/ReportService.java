@@ -17,6 +17,6 @@ public class ReportService {
 
   public Integer getNewId() {
     List<Report> reportsList = reportRepository.findAll();
-    return reportsList.get(reportsList.size()).getId();
+    return reportsList.isEmpty() ? reportsList.get(reportsList.size()).getId() + 1 : 0;
   }
 }

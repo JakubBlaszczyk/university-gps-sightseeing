@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
 @Controller
@@ -27,7 +26,7 @@ public class ReportPanelController {
 
   @PostMapping("/report")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
-  public ResponseEntity<MessageResponse> report(@RequestHeader String Cookie, @RequestBody String content) {
+  public ResponseEntity<MessageResponse> report(@RequestHeader String Cookie, String content) {
     User user = userService.findByUsername(jwtUtils.getUserNameFromJwtToken(Cookie.substring(Cookie.indexOf('=') + 1)));
     reportService.save(new Report(reportService.getNewId(), user.getId(), content));
     return ResponseEntity.ok(new MessageResponse("Thank you for the report, surely we will look into it"));
