@@ -1,7 +1,6 @@
 package com.attraction.route;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import com.attraction.comment.Comment;
@@ -33,7 +32,7 @@ public class RoutePanelController {
 
   @GetMapping("/route")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
-  public String loadPanel(Model model){
+  public String loadPanel(Model model) {
     model.addAttribute("routes", routeService.getAllRoutes());
     return "route_panel";
   }
@@ -53,11 +52,13 @@ public class RoutePanelController {
       List<Comment> commentList = commentService.getRouteComments(id);
       model.addAttribute("comments", commentList);
       List<User> userList = new ArrayList<>();
-      for (Comment comment : commentList){
+      for (Comment comment : commentList) {
         userList.add(userService.findById(comment.getUserId()));
       }
       model.addAttribute("users", userList);
-    } catch(NullPointerException e){}
+    } catch (NullPointerException e) {
+      return "route";
+    }
     return "route";
   }
 

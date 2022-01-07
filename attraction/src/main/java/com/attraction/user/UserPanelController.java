@@ -15,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -56,9 +55,14 @@ public class UserPanelController {
     if (user == null) {
       return ResponseEntity.badRequest().body(new MessageResponse("User doesn't exist"));
     }
-    String password = userRequest.getPassword() != null ? userRequest.getPassword() : user.getPassword();
-    String email = userRequest.getEmail() != null ? userRequest.getEmail() : user.getEmail();
-    String username = userRequest.getUsername() != null ? userRequest.getUsername() : user.getUsername();
+    String password = userRequest.getPassword() != null || !userRequest.getPassword().isBlank()
+        ? userRequest.getPassword()
+        : user.getPassword();
+    String email = userRequest.getEmail() != null || !userRequest.getEmail().isBlank() ? userRequest.getEmail()
+        : user.getEmail();
+    String username = userRequest.getUsername() != null || !userRequest.getUsername().isBlank()
+        ? userRequest.getUsername()
+        : user.getUsername();
     userService.save(new User(user.getId(), username, password, email,
         user.getAvatar(), user.getPoints(), user.getPreferredCity(), user.getPreferredMonument(), user.getRole()));
     return ResponseEntity.ok(new MessageResponse("Changed user profile"));
