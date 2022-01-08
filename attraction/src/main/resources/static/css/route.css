@@ -265,10 +265,14 @@
     }
 
     .u-section-2 .u-form-1 {
-        width: 340px;
+        width: auto;
     }
 
     .u-input {
         width: 70%;
+    }
+
+    .u-section-2 .u-sheet-1 .hide-this {
+        display: none;
     }
 }

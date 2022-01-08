@@ -21,4 +21,6 @@ public class UserRequest {
 
   @Size(min = 3, max = 20)
   String username;
+
+  String avatar;
 }

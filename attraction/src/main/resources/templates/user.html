@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/user.css" media="screen">
     <script class="u-script" type="text/javascript" src="js/jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="js/updateRefresh.js" defer=""></script>
     <meta name="generator" content="Nicepage 3.17.2, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
 
@@ -79,49 +80,64 @@
 </div></header>
 <section class="u-clearfix u-section-1" id="sec-a0dd">
     <div class="u-clearfix u-sheet u-sheet-1">
-        <h3 class="u-text u-text-default u-text-1">Twoja ranga: $<span style="font-weight: 700;">Przewodnik</span>
-        </h3>
-        <h3 class="u-text u-text-default u-text-2">Zdobyte punkty: $<b>punkty</b>
-        </h3>
+        <div>
+            <div th:switch="${user.role.name}">
+                <h3 class="u-text u-text-default u-text-1" th:case="'GUIDE'">Twoja ranga: Przewodnik</h3>
+                <h3 class="u-text u-text-default u-text-1" th:case="'ADMIN'">Twoja ranga: Administrator</h3>
+                <h3 class="u-text u-text-default u-text-1" th:case="'USER'">Twoja ranga: Użytkownik</h3>
+            </div>
+            <h3 th:text="${{'Zdobyte punkty: ' + user.points}}" class="u-text u-text-default u-text-2"></h3>
+        </div>
         <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
             <div class="u-layout">
                 <div class="u-layout-row">
                     <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-1">
                         <div class="u-container-layout u-container-layout-1">
                             <div class="u-align-center u-form u-form-1">
-                                <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
+                                <form th:action="@{/user/update}" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
                                     <div class="u-form-group u-form-name">
                                         <label for="name-cc5f" class="u-label">Nazwa użytkownika</label>
-                                        <input type="text" id="name-cc5f" name="username" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                                        <input type="text" id="name-cc5f" name="username" th:placeholder="${user.username}" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                                     </div>
                                     <div class="u-form-email u-form-group">
                                         <label for="email-cc5f" class="u-label">Adres email</label>
-                                        <input type="email" id="email-cc5f" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                                        <input type="email" id="email-cc5f" name="email" th:placeholder="${user.email}" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                                     </div>
                                     <div class="u-form-group u-form-group-3">
                                         <label for="text-7037" class="u-label">Hasło</label>
-                                        <input type="password" id="text-7037" name="password" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                                        <input type="password" id="text-7037" name="password" placeholder="********" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                                     </div>
                                     <div class="u-align-center u-form-group u-form-submit">
                                         <a href="#" class="u-btn u-btn-round u-btn-submit u-button-style u-custom-color-3 u-radius-20 u-btn-1">Zaktualizuj dane</a>
                                         <input type="submit" value="submit" class="u-form-control-hidden">
                                     </div>
-                                    <div class="u-form-send-message u-form-send-success"> Twoje dane zostały zaktualizowane. </div>
-                                    <div class="u-form-send-error u-form-send-message"> Nie można dokonać aktualizacji. </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                     <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
                         <div class="u-container-layout u-valign-top u-container-layout-2">
-                            <div class="u-image u-image-circle u-preserve-proportions u-image-1" alt="" data-image-width="1280" data-image-height="1280"></div>
-                            <a href="https://localhost/c/pets-animals-html-templates" class="u-btn u-btn-round u-button-style u-custom-color-3 u-hover-palette-1-dark-1 u-radius-20 u-btn-2">Zaktualizuj zdjęcie</a>
+                            <div class="u-align-center u-form u-form-2">
+                                <img th:src="${user.avatar}" class="u-image u-image-circle u-preserve-proportions u-image-1" alt="" data-image-width="1280" data-image-height="1280">
+                                <form th:action="@{/user/update}" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
+                                    <div class="u-form-group u-form-name">
+                                        <input type="file" id="avatar-input" name="avatar" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                                    </div>
+                                    <div class="u-form-group u-form-name">
+                                        <input type="text" id="b64" name="avatar" class="u-form-control-hidden">
+                                    </div>
+                                    <div class="u-align-center u-form-group u-form-submit">
+                                        <a href="#" class="u-btn u-btn-round u-btn-submit u-button-style u-custom-color-3 u-radius-20 u-btn-1">Zaktualizuj zdjęcie</a>
+                                        <input type="submit" value="submit" class="u-form-control-hidden">
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="u-form u-form-2">
+        <!--<div class="u-form u-form-2">
             <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form-1">
                 <div class="u-form-group u-form-select u-form-group-5">
                     <label for="select-4ceb" class="u-label">Preferowane miasto</label>
@@ -153,25 +169,23 @@
                 <div class="u-form-send-message u-form-send-success"> Preferencje zostały zaktualizowane. </div>
                 <div class="u-form-send-error u-form-send-message"> Nie można dokonać aktualizacji. </div>
             </form>
-        </div>
+        </div>-->
         <h4 class="u-text u-text-default u-text-3">Zasugeruj nową atrakcję!<br>
         </h4>
         <div class="u-form u-form-3">
-            <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form-3">
-                <input type="hidden" id="siteId" name="siteId" value="15694396">
-                <input type="hidden" id="pageId" name="pageId" value="217621301">
+            <form th:action="@{/monument/suggestion}" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form-3">
                 <div class="u-form-group u-form-name">
                     <label for="name-4d77" class="u-form-control-hidden u-label">Nazwa</label>
-                    <input type="text" id="name-4d77" name="suggested_name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" placeholder="Nazwa atrakcji">
+                    <input type="text" id="name-4d77" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" placeholder="Nazwa atrakcji">
                 </div>
                 <div class="u-form-email u-form-group">
                     <label for="email-4d77" class="u-form-control-hidden u-label">E-mail</label>
-                    <input type="text" placeholder="Miasto" id="email-4d77" name="suggested_city" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                    <input type="text" placeholder="Miasto" id="email-4d77" name="city" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
                 </div>
                 <div class="u-form-group u-form-select u-form-group-10">
                     <label for="select-4bf8" class="u-label">Typ</label>
                     <div class="u-form-select-wrapper">
-                        <select id="select-4bf8" name="suggested_type" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                        <select id="select-4bf8" name="type" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                             <option value="Muzeum">Muzeum</option>
                             <option value="Zabytek">Zabytek</option>
                             <option value="Pomnik">Pomnik</option>
@@ -183,8 +197,6 @@
                     <a href="#" class="u-btn u-btn-round u-btn-submit u-button-style u-custom-color-3 u-radius-20 u-btn-4" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">Prześlij</a>
                     <input type="submit" value="submit" class="u-form-control-hidden">
                 </div>
-                <div class="u-form-send-message u-form-send-success"> Dziękujemy! Twoja sugestia została wysłana. </div>
-                <div class="u-form-send-error u-form-send-message"> Nie można wysłać sugestii. Proszę poprawić błędy i spróbować ponownie. </div>
             </form>
         </div>
     </div>
@@ -194,21 +206,15 @@
         <h4 class="u-text u-text-default u-text-1">Znalazłeś błąd w aplikacji? Zgłoś go:<br>
         </h4>
         <div class="u-form u-form-1">
-            <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form-2">
-                <div class="u-form-email u-form-group">
-                    <label for="email-d9d6" class="u-form-control-hidden u-label">E-mail</label>
-                    <input type="email" placeholder="Wprowadź adres e-mail" id="email-d9d6" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-                </div>
+            <form th:action="@{/report}" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form-2">
                 <div class="u-form-group u-form-message">
                     <label for="message-d9d6" class="u-form-control-hidden u-label">Wiadomość</label>
-                    <textarea placeholder="Opisz znaleziony problem" rows="4" cols="50" id="message-d9d6" name="error_description" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required=""></textarea>
+                    <textarea placeholder="Opisz znaleziony problem" rows="4" cols="50" id="message-d9d6" name="content" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required=""></textarea>
                 </div>
                 <div class="u-align-center u-form-group u-form-submit">
                     <a href="#" class="u-btn u-btn-round u-btn-submit u-button-style u-custom-color-3 u-radius-20 u-btn-1">Zgłoś</a>
                     <input type="submit" value="submit" class="u-form-control-hidden">
                 </div>
-                <div class="u-form-send-message u-form-send-success"> Dziękujemy! Twoja wiadomość została wysłana. </div>
-                <div class="u-form-send-error u-form-send-message"> Nie można wysłać wiadomości. Proszę poprawić błędy i spróbować ponownie. </div>
             </form>
         </div>
     </div>

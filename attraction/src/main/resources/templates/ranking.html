@@ -78,12 +78,11 @@
 </div></header>
 <section class="u-clearfix u-section-1" id="sec-6e0e">
     <div class="u-clearfix u-sheet u-sheet-1">
-        <h2 class="u-align-center u-text u-text-default u-text-1">Najbardziej aktywni użytkownicy</h2>
-        <ol class="u-align-left u-text u-text-default u-text-2">
-            <li>Przewodnik user1- 100 pkt</li>
-            <li>Użytkownik Sample Item 2 - 54 pkt</li>
-            <li>Sample Item 3 - 30 pkt</li>
-        </ol>
+        <h2 class="u-align-center u-text u-text-default u-text-1">Ranking aktywności użytkowników</h2>
+        <ul th:each="user, userStat : ${users}" class="ranking-list u-align-left u-text u-text-default u-text-2">
+            <li th:text="${{(userStat.index + 1) + '. ' + user.username + ' - ' + user.points + ' pkt'}}"></li>
+
+        </ul>
     </div>
 </section>
 

@@ -3,6 +3,7 @@ $(document).ready(function(){
     console.log(retry);
 
     if ($.cookie('access_token') != null) {
+        sessionStorage.setItem("retry", 0);
         $('.login-panel').hide();
         $('.logout-panel').show();
         $('.error-message').hide();

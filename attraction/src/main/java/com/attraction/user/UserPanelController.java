@@ -63,8 +63,11 @@ public class UserPanelController {
     String username = userRequest.getUsername() != null && !userRequest.getUsername().isBlank()
         ? userRequest.getUsername()
         : user.getUsername();
+    String avatar = userRequest.getAvatar() != null && !userRequest.getAvatar().isBlank()
+        ? userRequest.getAvatar()
+        : user.getAvatar();
     userService.save(new User(user.getId(), username, password, email,
-        user.getAvatar(), user.getPoints(), user.getPreferredCity(), user.getPreferredMonument(), user.getRole()));
+        avatar, user.getPoints(), user.getPreferredCity(), user.getPreferredMonument(), user.getRole()));
     return ResponseEntity.ok(new MessageResponse("Changed user profile"));
   }
 

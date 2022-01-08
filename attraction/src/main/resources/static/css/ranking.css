@@ -16,3 +16,11 @@
         min-height: 318px;
     }
 }
+
+.ranking-list {
+    list-style-type: none;
+}
+
+.success-signup {
+    align-content: center;
+}

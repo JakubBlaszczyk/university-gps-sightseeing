@@ -6,6 +6,7 @@ import java.util.List;
 import com.attraction.comment.Comment;
 import com.attraction.comment.CommentService;
 import com.attraction.route_monument.RouteMonumentService;
+import com.attraction.security.jwt.JwtUtils;
 import com.attraction.user.User;
 import com.attraction.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 @Controller
 public class RoutePanelController {
@@ -30,6 +32,9 @@ public class RoutePanelController {
   @Autowired
   private UserService userService;
 
+  @Autowired
+  private JwtUtils jwtUtils;
+
   @GetMapping("/route")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
   public String loadPanel(Model model) {
@@ -45,9 +50,11 @@ public class RoutePanelController {
 
   @GetMapping("/route/{id}")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
-  public String loadRoute(@PathVariable Integer id, Model model) {
+  public String loadRoute(@RequestHeader String cookie, @PathVariable Integer id, Model model) {
     model.addAttribute("route", routeService.getRoute(id));
     model.addAttribute("monuments", routeMonumentService.getMonumentOnTheRoute(id));
+    User user = userService.findByUsername(jwtUtils.getUserNameFromJwtToken(cookie.substring(cookie.indexOf('=') + 1)));
+    model.addAttribute("activeUser", user);
     try {
       List<Comment> commentList = commentService.getRouteComments(id);
       model.addAttribute("comments", commentList);
