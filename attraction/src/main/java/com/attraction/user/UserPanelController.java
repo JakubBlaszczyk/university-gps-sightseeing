@@ -34,8 +34,8 @@ public class UserPanelController {
 
   @GetMapping("/user")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
-  public String loadPanel(@RequestHeader String Cookie, Model model) {
-    User user = userService.findByUsername(jwtUtils.getUserNameFromJwtToken(Cookie.substring(Cookie.indexOf('=') + 1)));
+  public String loadPanel(@RequestHeader String cookie, Model model) {
+    User user = userService.findByUsername(jwtUtils.getUserNameFromJwtToken(cookie.substring(cookie.indexOf('=') + 1)));
     model.addAttribute("user", user);
     return "user";
   }
@@ -55,12 +55,12 @@ public class UserPanelController {
     if (user == null) {
       return ResponseEntity.badRequest().body(new MessageResponse("User doesn't exist"));
     }
-    String password = userRequest.getPassword() != null || !userRequest.getPassword().isBlank()
+    String password = userRequest.getPassword() != null && !userRequest.getPassword().isBlank()
         ? userRequest.getPassword()
         : user.getPassword();
-    String email = userRequest.getEmail() != null || !userRequest.getEmail().isBlank() ? userRequest.getEmail()
+    String email = userRequest.getEmail() != null && !userRequest.getEmail().isBlank() ? userRequest.getEmail()
         : user.getEmail();
-    String username = userRequest.getUsername() != null || !userRequest.getUsername().isBlank()
+    String username = userRequest.getUsername() != null && !userRequest.getUsername().isBlank()
         ? userRequest.getUsername()
         : user.getUsername();
     userService.save(new User(user.getId(), username, password, email,
