@@ -7,8 +7,12 @@ $(document).ready(function() {
     var longi = document.getElementById("longitude");
     var lati = document.getElementById("latitude");
 
+    $('.location-in-use').hide();
+
     function getLocation() {
         navigator.geolocation.getCurrentPosition(sendPosition);
+        $('.location-in-use').show();
+        setTimeout(() => {$('.location-in-use').hide();}, 3000);
     }
 
     function sendPosition(position) {
