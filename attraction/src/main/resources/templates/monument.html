@@ -111,6 +111,23 @@
               </div>
             </div>
           </div>
+          <div class="u-form u-form-1">
+            <form th:action="@{/locate}" method="POST" id="location-form" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
+              <input type="hidden" id="longitude" name="longitude">
+              <input type="hidden" id="latitude" name="latitude">
+              <input type="hidden" name="monumentId" th:value="${monument.id}">
+              <input type="hidden" name="userId" th:value="${activeUser.id}">
+              <div class="u-align-center u-form-group u-form-submit">
+                <a href="#" class="u-btn u-btn-round u-btn-submit u-button-style u-custom-color-3 u-radius-20 u-btn-2" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">Zdobądź punkty</a>
+                <input type="submit" value="submit" class="u-form-control-hidden">
+              </div>
+            </form>
+          </div>
+          <div class="u-container-style u-layout-cell" style="align-content: center">
+            <p class="location-in-use u-form-send-error" style="text-align: center; margin-right: auto; margin-left: auto">
+              Lokalizacja w użyciu
+            </p>
+          </div>
         </div>
       </div>
     </div>

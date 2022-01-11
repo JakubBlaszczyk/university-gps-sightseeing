@@ -19,4 +19,6 @@ public class Monument {
   String photo;
   String city;
   String mapUrl;
+  String longitude;
+  String latitude;
 }

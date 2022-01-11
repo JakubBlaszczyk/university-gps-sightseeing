@@ -10,6 +10,7 @@ import com.attraction.security.jwt.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,6 +32,9 @@ public class UserPanelController {
 
   @Autowired
   JwtUtils jwtUtils;
+
+  @Autowired
+  PasswordEncoder encoder;
 
   @GetMapping("/user")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
@@ -66,7 +70,7 @@ public class UserPanelController {
     String avatar = userRequest.getAvatar() != null && !userRequest.getAvatar().isBlank()
         ? userRequest.getAvatar()
         : user.getAvatar();
-    userService.save(new User(user.getId(), username, password, email,
+    userService.save(new User(user.getId(), username, encoder.encode(password), email,
         avatar, user.getPoints(), user.getPreferredCity(), user.getPreferredMonument(), user.getRole()));
     return ResponseEntity.ok(new MessageResponse("Changed user profile"));
   }
