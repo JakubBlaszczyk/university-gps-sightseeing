@@ -26,7 +26,7 @@ $(document).ready(function(){
     });
 
     $('.login-button').click(function (){
-        var retry = 1;
+        retry = 1;
         sessionStorage.setItem("retry", retry);
         setTimeout(() => {location.reload();}, 1000);
     });

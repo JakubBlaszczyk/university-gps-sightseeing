@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 @Controller
 public class RoutePanelController {
 
+  private static final String ROUTE = "route";
+
   @Autowired
   private RouteService routeService;
 
@@ -51,7 +53,7 @@ public class RoutePanelController {
   @GetMapping("/route/{id}")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
   public String loadRoute(@RequestHeader String cookie, @PathVariable Integer id, Model model) {
-    model.addAttribute("route", routeService.getRoute(id));
+    model.addAttribute(ROUTE, routeService.getRoute(id));
     model.addAttribute("monuments", routeMonumentService.getMonumentOnTheRoute(id));
     User user = userService.findByUsername(jwtUtils.getUserNameFromJwtToken(cookie.substring(cookie.indexOf('=') + 1)));
     model.addAttribute("activeUser", user);
@@ -64,9 +66,9 @@ public class RoutePanelController {
       }
       model.addAttribute("users", userList);
     } catch (NullPointerException e) {
-      return "route";
+      return ROUTE;
     }
-    return "route";
+    return ROUTE;
   }
 
 }

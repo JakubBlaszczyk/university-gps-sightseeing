@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class MonumentPanelController {
 
+  private static final String MONUMENT = "monument";
+
   @Autowired
   MonumentService monumentService;
 
@@ -48,20 +50,22 @@ public class MonumentPanelController {
   @GetMapping("/monuments/{id}")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")
   public String loadMonument(@RequestHeader String cookie, @PathVariable Integer id, Model model) {
-    model.addAttribute("monument", monumentService.getMonument(id));
+    model.addAttribute(MONUMENT, monumentService.getMonument(id));
     User user = userService.findByUsername(jwtUtils.getUserNameFromJwtToken(cookie.substring(cookie.indexOf('=') + 1)));
     model.addAttribute("activeUser", user);
     try {
       List<Comment> commentList = commentService.getMonumentComments(id);
       model.addAttribute("comments", commentList);
       List<User> userList = new ArrayList<>();
-      for (Comment comment : commentList){
+      for (Comment comment : commentList) {
         userList.add(userService.findById(comment.getUserId()));
       }
       model.addAttribute("users", userList);
-    } catch(NullPointerException e){}
+    } catch (NullPointerException e) {
+      return MONUMENT;
+    }
 
-    return "monument";
+    return MONUMENT;
   }
 
   @GetMapping("/monuments/city/{city}")
