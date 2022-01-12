@@ -15,7 +15,7 @@ public class UserService {
 
   public Integer getNewId() {
     List<User> usersList = userRepo.findAll();
-    return usersList.get(usersList.size() - 1).getId();
+    return usersList.get(usersList.size() - 1).getId() + 1;
   }
 
   public Boolean existsByEmail(String email) {
