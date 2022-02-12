@@ -1,4 +1,4 @@
-package com.attraction.route_monument;
+package com.attraction.routemonument;
 
 import lombok.Value;
 

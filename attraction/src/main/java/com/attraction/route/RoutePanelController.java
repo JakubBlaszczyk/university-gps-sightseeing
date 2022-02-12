@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.attraction.comment.Comment;
 import com.attraction.comment.CommentService;
-import com.attraction.route_monument.RouteMonumentService;
+import com.attraction.routemonument.RouteMonumentService;
 import com.attraction.security.jwt.JwtUtils;
 import com.attraction.user.User;
 import com.attraction.user.UserService;

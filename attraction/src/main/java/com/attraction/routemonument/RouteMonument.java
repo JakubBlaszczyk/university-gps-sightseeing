@@ -1,4 +1,4 @@
-package com.attraction.route_monument;
+package com.attraction.routemonument;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

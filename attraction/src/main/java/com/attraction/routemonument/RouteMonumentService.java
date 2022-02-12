@@ -1,4 +1,4 @@
-package com.attraction.route_monument;
+package com.attraction.routemonument;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 
-import com.attraction.route_monument.RouteMonument.Key;
+import com.attraction.routemonument.RouteMonument.Key;
 @Service
 @AllArgsConstructor
 public class RouteMonumentService {

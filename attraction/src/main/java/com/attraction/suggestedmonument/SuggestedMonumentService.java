@@ -1,4 +1,4 @@
-package com.attraction.suggested_monument;
+package com.attraction.suggestedmonument;
 
 import java.util.List;
 
