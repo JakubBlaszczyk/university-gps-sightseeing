@@ -3,14 +3,16 @@ package com.attraction.monument;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class MonumentService {
-  @Autowired
-  MonumentRepository monumentRepo;
+
+  private MonumentRepository monumentRepo;
 
   public List<Monument> getMonuments() {
     return monumentRepo.findAll();

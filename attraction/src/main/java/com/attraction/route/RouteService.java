@@ -3,14 +3,15 @@ package com.attraction.route;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class RouteService {
 
-  @Autowired
-  RouteRepository routeRepository;
+  private RouteRepository routeRepository;
 
   public List<Route> getAllRoutes() {
     return routeRepository.findAll();

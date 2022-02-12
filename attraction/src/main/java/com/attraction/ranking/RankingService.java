@@ -5,14 +5,15 @@ import java.util.stream.Collectors;
 
 import com.attraction.user.UserService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class RankingService {
 
-  @Autowired
-  UserService userService;
+  private UserService userService;
 
   List<RankingEntity> loadSortedList() {
     return userService.getAllUsers().stream().sorted((o1, o2) -> -o1.compareTo(o2))

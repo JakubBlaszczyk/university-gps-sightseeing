@@ -9,21 +9,18 @@ import com.attraction.monument.Monument;
 import com.attraction.monument.MonumentService;
 import com.attraction.route.RouteService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import lombok.AllArgsConstructor;
 
 import com.attraction.route_monument.RouteMonument.Key;
 @Service
+@AllArgsConstructor
 public class RouteMonumentService {
 
-  @Autowired
-  RouteService routeService;
-
-  @Autowired
-  MonumentService monumentService;
-
-  @Autowired
-  RouteMonumentRepository routeMonumentRepository;
+  private RouteService routeService;
+  private MonumentService monumentService;
+  private RouteMonumentRepository routeMonumentRepository;
 
   Boolean addRouteMonument(RouteMonumentRequest request) {
     if (routeService.getAllRoutes().stream().noneMatch(n -> n.getId().equals(request.getRouteId()))) {

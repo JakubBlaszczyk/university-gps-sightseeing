@@ -9,7 +9,6 @@ import com.attraction.route_monument.RouteMonumentService;
 import com.attraction.security.jwt.JwtUtils;
 import com.attraction.user.User;
 import com.attraction.user.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,24 +16,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 
+import lombok.AllArgsConstructor;
+
 @Controller
+@AllArgsConstructor
 public class RoutePanelController {
 
   private static final String ROUTE = "route";
 
-  @Autowired
   private RouteService routeService;
-
-  @Autowired
   private RouteMonumentService routeMonumentService;
-
-  @Autowired
   private CommentService commentService;
-
-  @Autowired
   private UserService userService;
-
-  @Autowired
   private JwtUtils jwtUtils;
 
   @GetMapping("/route")

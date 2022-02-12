@@ -4,21 +4,21 @@ import com.attraction.monument.Monument;
 import com.attraction.monument.MonumentService;
 import com.attraction.route.Route;
 import com.attraction.route.RouteService;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import lombok.AllArgsConstructor;
+
 import java.util.Random;
 
 @Controller
+@AllArgsConstructor
 public class MainPanelController {
 
-  @Autowired
-  MonumentService monumentService;
-
-  @Autowired
-  RouteService routeService;
+  private MonumentService monumentService;
+  private RouteService routeService;
 
   @GetMapping("")
   public String loadPanel(Model model) {

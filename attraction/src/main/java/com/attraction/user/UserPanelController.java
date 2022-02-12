@@ -7,7 +7,6 @@ import javax.validation.Valid;
 import com.attraction.security.MessageResponse;
 import com.attraction.security.jwt.JwtUtils;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,21 +19,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @Controller
 @Slf4j
+@AllArgsConstructor
 public class UserPanelController {
 
-  @Autowired
-  UserService userService;
-
-  @Autowired
-  JwtUtils jwtUtils;
-
-  @Autowired
-  PasswordEncoder encoder;
+  private UserService userService;
+  private JwtUtils jwtUtils;
+  private PasswordEncoder encoder;
 
   @GetMapping("/user")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")

@@ -2,14 +2,15 @@ package com.attraction.suggested_monument;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class SuggestedMonumentService {
-  
-  @Autowired
-  SuggestedMonumentRepository suggestedMonumentRepository;
+
+  private SuggestedMonumentRepository suggestedMonumentRepository;
 
   public Integer getNewId() {
     List<SuggestedMonument> monumentList = suggestedMonumentRepository.findAll();

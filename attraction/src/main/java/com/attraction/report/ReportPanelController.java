@@ -5,24 +5,21 @@ import com.attraction.security.jwt.JwtUtils;
 import com.attraction.user.User;
 import com.attraction.user.UserService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 
+import lombok.AllArgsConstructor;
+
 @Controller
+@AllArgsConstructor
 public class ReportPanelController {
 
-  @Autowired
-  ReportService reportService;
-
-  @Autowired
-  UserService userService;
-
-  @Autowired
-  JwtUtils jwtUtils;
+  private ReportService reportService;
+  private UserService userService;
+  private JwtUtils jwtUtils;
 
   @PostMapping("/report")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")

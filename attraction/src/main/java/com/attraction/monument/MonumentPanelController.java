@@ -10,31 +10,26 @@ import com.attraction.security.jwt.JwtUtils;
 import com.attraction.user.User;
 import com.attraction.user.UserLocationRequest;
 import com.attraction.user.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import lombok.AllArgsConstructor;
+
 import javax.validation.Valid;
 
 @Controller
+@AllArgsConstructor
 public class MonumentPanelController {
 
   private static final String MONUMENT = "monument";
 
-  @Autowired
-  MonumentService monumentService;
-
-  @Autowired
-  CommentService commentService;
-
-  @Autowired
-  UserService userService;
-
-  @Autowired
-  JwtUtils jwtUtils;
+  private MonumentService monumentService;
+  private CommentService commentService;
+  private UserService userService;
+  private JwtUtils jwtUtils;
 
   @GetMapping("/monument")
   @PreAuthorize("hasAnyAuthority('USER', 'GUIDE', 'ADMIN')")

@@ -2,17 +2,18 @@ package com.attraction.suggested_monument;
 
 import com.attraction.security.MessageResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import lombok.AllArgsConstructor;
+
 @Controller
+@AllArgsConstructor
 public class SuggestedMonumentPanelController {
 
-  @Autowired
-  SuggestedMonumentService service;
+  private SuggestedMonumentService service;
 
   @PostMapping("/monument/suggestion")
   @PreAuthorize("hasAnyAuthority('GUIDE', 'ADMIN')")

@@ -3,15 +3,16 @@ package com.attraction.user;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class UserService {
 
-  @Autowired
-  UserRepository userRepo;
+  private UserRepository userRepo;
 
   public Integer getNewId() {
     List<User> usersList = userRepo.findAll();
