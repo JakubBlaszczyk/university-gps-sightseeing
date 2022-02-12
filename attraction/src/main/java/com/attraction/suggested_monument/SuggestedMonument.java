@@ -1,4 +1,4 @@
-package com.attraction.monument.suggested_monument;
+package com.attraction.suggested_monument;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
